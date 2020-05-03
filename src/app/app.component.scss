@@ -1,0 +1,25 @@
+
+  $primary: #fe7950;
+  $secondary: #3b3b3b;
+  $background: #282727;
+
+// MatInput Settings
+::ng-deep .mat-form-field-underline {
+    background-color: green;
+}
+
+/* input color class */
+::ng-deep input.mat-input-element {
+    color: $primary;
+  }
+  
+  /* Change label color on focused */
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+    color: $primary !important;
+  }
+  
+  /* underline border color on focused */
+::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple{
+    background-color: $primary !important;
+  }
+

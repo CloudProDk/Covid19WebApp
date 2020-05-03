@@ -1,0 +1,56 @@
+$primary: #fe7950;
+$secondary: #3b3b3b;
+$background: #282727;
+
+.sidenav{
+    color: #fa7950;
+    background: #3b3b3b;
+    padding: 1rem;
+}
+
+.sidenav-container{
+    height: calc(100% - 65px);
+}
+
+.container{
+    background: $background;
+    padding: 1rem;
+}
+
+.divider{
+    background: $primary;
+    width: 10rem;
+}
+
+.sidenav-header{
+    margin-bottom: 2px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+
+.sidenav-active-link {
+    font-weight: bold;
+    transition: background-color 1s linear; 
+    background: $primary;
+    color: $secondary;
+    padding: 5px;
+    animation-name: fadeInOpacity;
+	animation-timing-function: ease-in;
+	animation-duration: 1s;
+}
+
+.menu-item{
+    cursor: pointer;
+    font-size: 14px;
+    margin-bottom: 8px;
+    padding: 5px;
+}
+
+.menu-item:hover {
+    background: $primary;
+    color: $secondary;
+}
+
+// Removes blue outline from activated routerLink
+:focus {outline:0 !important;}

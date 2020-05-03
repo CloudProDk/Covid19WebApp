@@ -1,0 +1,14 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav class="sidenav" mode="side" opened>
+        <!-- Header -->
+        <p class="sidenav-header">{{HEADER}}</p>
+        <mat-divider class="divider"></mat-divider>
+        <!-- Pages -->
+        <ng-container *ngFor="let m of MENUITEMS">
+            <p class="menu-item" routerLink="{{m.link}}" routerLinkActive="sidenav-active-link"><mat-icon *ngIf="m.icon">{{m.icon}}</mat-icon>{{m.title}}</p>
+        </ng-container>
+    </mat-sidenav>
+    <mat-sidenav-content class="container">
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,13 @@
+<mat-toolbar color="primary" class="navbar ">
+    <mat-toolbar-row class="header mat-elevation-z6">
+        <!-- Header logo -->
+        <span><img class="header-image" src="../../../assets/logos/tmdb.png" [routerLink]="['my-app']" alt=""></span>
+        <!-- Header menu items -->
+        <ng-container *ngFor="let m of MENUITEMS">
+            <span class="nav-item" routerLink="{{m.link}}" routerLinkActive="active-link">{{m.title}}</span>
+        </ng-container>
+        <span class="example-spacer"></span>
+        <mat-icon [routerLink]="['my-profile']" class="user-icon" aria-hidden="false" aria-label="My profile">account_circle</mat-icon>
+       
+    </mat-toolbar-row>
+</mat-toolbar>
