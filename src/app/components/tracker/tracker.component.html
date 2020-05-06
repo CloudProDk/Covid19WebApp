@@ -9,7 +9,7 @@
           [attr.data-index]="i"
           [value]="i"
         >
-          {{ timeline.updated_at.slice(0, 10) }}
+          {{ timeline.date }}
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -80,7 +80,7 @@
                 </span>
               </td>
             </tr>
-            <tr>
+            <tr *ngIf="selectedDate == 0; else noCondition">
               <td>
                 {{
                   country.latest_data.confirmed -
@@ -98,6 +98,22 @@
                 </span>
               </td>
             </tr>
+            <ng-template #noCondition>
+              <tr>
+                <td>
+                  -
+                  <span class="highlightProperties">
+                    MILD CONDITION
+                  </span>
+                </td>
+                <td>
+                  -
+                  <span class="highlightProperties">
+                    CRITICAL CONDITION
+                  </span>
+                </td>
+              </tr>
+            </ng-template>
           </table>
         </td>
         <td>
@@ -286,9 +302,6 @@
         <td>{{ country.latest_data.deaths }}</td>
         <td>{{ country.today.deaths }}</td>
         <td>{{ country.latest_data.recovered }}</td>
-        <!-- <td>
-        <Button (click)="getCountry(country.code)">View more stats</Button>
-      </td> -->
       </tr>
     </table>
   </div>
