@@ -1,0 +1,295 @@
+<div class="container">
+  <h1>{{ country.name }}</h1>
+  <div *ngIf="country.timeline[0]">
+    <mat-form-field>
+      <mat-label>Date</mat-label>
+      <mat-select [(ngModel)]="selectedDate">
+        <mat-option
+          *ngFor="let timeline of country.timeline; let i = index"
+          [attr.data-index]="i"
+          [value]="i"
+        >
+          {{ timeline.updated_at.slice(0, 10) }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="highlights">
+    <table *ngIf="country.timeline[0]; else noTimeline">
+      <tr>
+        <td>
+          <table>
+            <h3>Summary</h3>
+            <tr>
+              <td>
+                {{ country.timeline[selectedDate].confirmed }}
+                <span class="highlightProperties">
+                  TOTAL CASES
+                </span>
+              </td>
+              <td>
+                {{ country.timeline[selectedDate].active }}
+                <span class="highlightProperties">
+                  ACTIVE CASES
+                </span>
+              </td>
+              <td>
+                {{ country.population }}
+                <span class="highlightProperties">
+                  POPULATION
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                {{ country.timeline[selectedDate].recovered }}
+                <span class="highlightProperties">
+                  TOTAL RECOVERED
+                </span>
+              </td>
+              <td>
+                {{ country.timeline[selectedDate].deaths }}
+                <span class="highlightProperties">
+                  TOTAL DEATHS
+                </span>
+              </td>
+              <td>
+                -
+                <span class="highlightProperties">
+                  TESTED
+                </span>
+              </td>
+            </tr>
+          </table>
+        </td>
+        <td>
+          <table>
+            <h3>Active cases</h3>
+            <tr>
+              <td>
+                {{ country.timeline[selectedDate].active }}
+                <span class="highlightProperties">
+                  ACTIVE CASES
+                </span>
+              </td>
+              <td>
+                {{ country.timeline[selectedDate].new_confirmed }}
+                <span class="highlightProperties">
+                  NEW CASES
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                {{
+                  country.latest_data.confirmed -
+                    country.latest_data.recovered -
+                    country.latest_data.critical
+                }}
+                <span class="highlightProperties">
+                  MILD CONDITION
+                </span>
+              </td>
+              <td>
+                {{ country.latest_data.critical }}
+                <span class="highlightProperties">
+                  CRITICAL CONDITION
+                </span>
+              </td>
+            </tr>
+          </table>
+        </td>
+        <td>
+          <table>
+            <h3>Closed cases</h3>
+            <tr>
+              <td>
+                {{ country.timeline[selectedDate].recovered }}
+                <span class="highlightProperties">
+                  TOTAL RECOVERED
+                </span>
+              </td>
+              <td>
+                {{ country.timeline[selectedDate].new_recovered }}
+                <span class="highlightProperties">
+                  NEW RECOVERIES
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                {{ country.timeline[selectedDate].deaths }}
+                <span class="highlightProperties">
+                  TOTAL DEATHS
+                </span>
+              </td>
+              <td>
+                {{ country.timeline[selectedDate].new_deaths }}
+                <span class="highlightProperties">
+                  NEW DEATHS
+                </span>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+    <ng-template #noTimeline>
+      <table>
+        <tr>
+          <td>
+            <table>
+              <h3>Summary</h3>
+              <tr>
+                <td>
+                  {{ country.latest_data.confirmed }}
+                  <span class="highlightProperties">
+                    TOTAL CASES
+                  </span>
+                </td>
+                <td>
+                  {{
+                    country.latest_data.confirmed -
+                      country.latest_data.recovered
+                  }}
+                  <span class="highlightProperties">
+                    ACTIVE CASES
+                  </span>
+                </td>
+                <td>
+                  {{ country.population }}
+                  <span class="highlightProperties">
+                    POPULATION
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  {{ country.latest_data.recovered }}
+                  <span class="highlightProperties">
+                    TOTAL RECOVERED
+                  </span>
+                </td>
+                <td>
+                  {{ country.latest_data.deaths }}
+                  <span class="highlightProperties">
+                    TOTAL DEATHS
+                  </span>
+                </td>
+                <td>
+                  -
+                  <span class="highlightProperties">
+                    TESTED
+                  </span>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table>
+              <h3>Active cases</h3>
+              <tr>
+                <td>
+                  {{
+                    country.latest_data.confirmed -
+                      country.latest_data.recovered
+                  }}
+                  <span class="highlightProperties">
+                    ACTIVE CASES
+                  </span>
+                </td>
+                <td>
+                  {{ country.today.confirmed }}
+                  <span class="highlightProperties">
+                    NEW CASES
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  {{
+                    country.latest_data.confirmed -
+                      country.latest_data.recovered -
+                      country.latest_data.critical
+                  }}
+                  <span class="highlightProperties">
+                    MILD CONDITION
+                  </span>
+                </td>
+                <td>
+                  {{ country.latest_data.critical }}
+                  <span class="highlightProperties">
+                    CRITICAL CONDITION
+                  </span>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table>
+              <h3>Closed cases</h3>
+              <tr>
+                <td>
+                  {{ country.latest_data.recovered }}
+                  <span class="highlightProperties">
+                    TOTAL RECOVERED
+                  </span>
+                </td>
+                <td>
+                  -
+                  <span class="highlightProperties">
+                    NEW RECOVERIES
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  {{ country.latest_data.deaths }}
+                  <span class="highlightProperties">
+                    TOTAL DEATHS
+                  </span>
+                </td>
+                <td>
+                  {{ country.today.deaths }}
+                  <span class="highlightProperties">
+                    NEW DEATHS
+                  </span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </ng-template>
+  </div>
+  <div class="bigTable">
+    <table>
+      <th>Country</th>
+      <th>Total cases</th>
+      <th>Active cases</th>
+      <th>New cases</th>
+      <th>Total deaths</th>
+      <th>New deaths</th>
+      <th>Total recovered</th>
+      <!-- <th>Additional statistics</th> -->
+      <tr *ngFor="let country of countries" (click)="getCountry(country.code)">
+        <td>
+          {{ country.name }}
+          <span>({{ country.code }})</span>
+        </td>
+        <td>{{ country.latest_data.confirmed }}</td>
+        <td>
+          {{ country.latest_data.confirmed - country.latest_data.recovered }}
+        </td>
+        <td>{{ country.today.confirmed }}</td>
+        <td>{{ country.latest_data.deaths }}</td>
+        <td>{{ country.today.deaths }}</td>
+        <td>{{ country.latest_data.recovered }}</td>
+        <!-- <td>
+        <Button (click)="getCountry(country.code)">View more stats</Button>
+      </td> -->
+      </tr>
+    </table>
+  </div>
+</div>
