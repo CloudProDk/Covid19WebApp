@@ -48,6 +48,7 @@ import { HttpClientInMemoryWebApiModule } from "angular-in-memory-web-api";
 // Additional modules
 import { ToastrModule } from "ngx-toastr";
 import { TrackerComponent } from "./components/tracker/tracker.component";
+import { MerchComponent } from './components/merch/merch.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { TrackerComponent } from "./components/tracker/tracker.component";
     HeaderComponent,
     FooterComponent,
     TrackerComponent,
+    MerchComponent,
   ],
   imports: [
     AppRoutingModule,
