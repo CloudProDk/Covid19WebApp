@@ -3,7 +3,9 @@ import { Routes, RouterModule } from "@angular/router";
 import { AppComponent } from "./app.component";
 import { TrackerComponent } from "./components/tracker/tracker.component";
 
-const routes: Routes = [{ path: "tracker", component: TrackerComponent }];
+const routes: Routes = [{ path: "tracker", component: TrackerComponent }, 
+{ path: "merch", component: MerchComponent }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
