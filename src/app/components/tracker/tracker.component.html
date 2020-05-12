@@ -290,7 +290,15 @@
       <th>Total deaths</th>
       <th>New deaths</th>
       <th>Total recovered</th>
-      <!-- <th>Additional statistics</th> -->
+      <tr>
+        <td>🌍 Global</td>
+        <td>{{ totalConfirmed }}</td>
+        <td>{{ totalActiveCases }}</td>
+        <td>{{ totalNewCases }}</td>
+        <td>{{ totalDeaths }}</td>
+        <td>{{ totalNewDeaths }}</td>
+        <td>{{ totalRecovered }}</td>
+      </tr>
       <tr *ngFor="let country of countries" (click)="getCountry(country.code)">
         <td>
           {{ country.name }}
