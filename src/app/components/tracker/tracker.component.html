@@ -16,7 +16,9 @@
   </div>
 
   <div class="highlights">
-    <table *ngIf="country.timeline[0]; else noTimeline">
+    <table
+      *ngIf="country.timeline[0] && selectedDate != undefined; else noTimeline"
+    >
       <tr>
         <td>
           <table>
@@ -80,7 +82,7 @@
                 </span>
               </td>
             </tr>
-            <tr *ngIf="selectedDate == 0; else noCondition">
+            <tr *ngIf="selectedDate == undefined; else noCondition">
               <td>
                 {{
                   country.latest_data.confirmed -

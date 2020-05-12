@@ -10,11 +10,12 @@ import { Country } from "../../models/country";
 export class TrackerComponent implements OnInit {
   countries: any = [];
   country: any = {};
-  selectedDate: number = 0;
+  selectedDate: number;
 
   constructor(private trackerSvc: TrackerService) {}
 
   ngOnInit(): void {
+    console.log(this.selectedDate);
     this.getCountries();
     this.getCountryDK();
   }
@@ -29,7 +30,7 @@ export class TrackerComponent implements OnInit {
     this.trackerSvc.getCountry(countryCode).subscribe((data) => {
       this.country = data.data;
       scroll(0, 0);
-      this.selectedDate = 0;
+      this.selectedDate = undefined;
     });
   }
   getCountryDK() {
