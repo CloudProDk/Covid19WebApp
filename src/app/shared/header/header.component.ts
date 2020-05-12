@@ -14,9 +14,9 @@ export class HeaderComponent implements OnInit {
    */
 
   MENUITEMS = [
-    {title: 'Movies', link: 'movies'},
-    {title: 'Wishlist', link: 'wishlist'},
-    {title: 'Ratings', link: 'ratings'},
+    {title: 'Home', link: 'tracker'},
+    {title: 'Merchandise', link: 'shop'},
+    {title: 'Test your knowledge', link: 'quiz'},
   ];
 
   constructor() { }

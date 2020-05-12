@@ -1,11 +1,11 @@
-import { Component, OnInit, Inject } from "@angular/core";
-import { TrackerService } from "../../services/tracker/tracker.service";
-import { Country } from "../../models/country";
+import { Component, OnInit, Inject } from '@angular/core';
+import { TrackerService } from '../../services/tracker/tracker.service';
+import { Country } from '../../models/country';
 
 @Component({
-  selector: "app-tracker",
-  templateUrl: "./tracker.component.html",
-  styleUrls: ["./tracker.component.scss"],
+  selector: 'app-tracker',
+  templateUrl: './tracker.component.html',
+  styleUrls: ['./tracker.component.scss'],
 })
 export class TrackerComponent implements OnInit {
   countries: any = [];
@@ -25,7 +25,7 @@ export class TrackerComponent implements OnInit {
     });
   }
 
-  getCountry(countryCode: String) {
+  getCountry(countryCode: string) {
     this.trackerSvc.getCountry(countryCode).subscribe((data) => {
       this.country = data.data;
       scroll(0, 0);
@@ -33,7 +33,7 @@ export class TrackerComponent implements OnInit {
     });
   }
   getCountryDK() {
-    this.trackerSvc.getCountry("DK").subscribe((data) => {
+    this.trackerSvc.getCountry('DK').subscribe((data) => {
       this.country = data.data;
     });
   }
