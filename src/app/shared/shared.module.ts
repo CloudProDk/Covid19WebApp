@@ -4,11 +4,12 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatDividerModule, MatCardModule, MatIconModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
+import { NumberFormatPipe } from './number-format.pipe';
 
 
 
 @NgModule({
-  declarations: [SidebarComponent],
+  declarations: [SidebarComponent, NumberFormatPipe],
   imports: [
     CommonModule,
     MatSidenavModule,

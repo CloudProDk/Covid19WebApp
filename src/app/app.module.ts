@@ -37,6 +37,7 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatTableModule } from "@angular/material/table";
 import { MatSortModule } from "@angular/material/sort";
 import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatRippleModule, MatNativeDateModule } from "@angular/material/core";
 import { HeaderComponent } from "./shared/header/header.component";
 import { FooterComponent } from "./shared/footer/footer.component";
 import { SharedModule } from "./shared/shared.module";
@@ -66,6 +67,7 @@ import { TrackerComponent } from "./components/tracker/tracker.component";
     MatInputModule,
     MatAutocompleteModule,
     MatDatepickerModule,
+    MatNativeDateModule,
     MatFormFieldModule,
     MatRadioModule,
     MatSelectModule,
@@ -91,6 +93,7 @@ import { TrackerComponent } from "./components/tracker/tracker.component";
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
+    MatRippleModule,
     SharedModule,
     HttpClientModule,
     MatCardModule,
