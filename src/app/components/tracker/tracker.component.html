@@ -16,7 +16,9 @@
   </div>
 
   <div class="highlights">
-    <table *ngIf="country.timeline[0]; else noTimeline">
+    <table
+      *ngIf="country.timeline[0] && selectedDate != undefined; else noTimeline"
+    >
       <tr>
         <td>
           <table>
@@ -80,7 +82,7 @@
                 </span>
               </td>
             </tr>
-            <tr *ngIf="selectedDate == 0; else noCondition">
+            <tr *ngIf="selectedDate == undefined; else noCondition">
               <td>
                 {{
                   country.latest_data.confirmed -
@@ -288,7 +290,15 @@
       <th>Total deaths</th>
       <th>New deaths</th>
       <th>Total recovered</th>
-      <!-- <th>Additional statistics</th> -->
+      <tr>
+        <td>🌍 Global</td>
+        <td>{{ totalConfirmed }}</td>
+        <td>{{ totalActiveCases }}</td>
+        <td>{{ totalNewCases }}</td>
+        <td>{{ totalDeaths }}</td>
+        <td>{{ totalNewDeaths }}</td>
+        <td>{{ totalRecovered }}</td>
+      </tr>
       <tr *ngFor="let country of countries" (click)="getCountry(country.code)">
         <td>
           {{ country.name }}

@@ -10,13 +10,19 @@ import { Country } from '../../models/country';
 export class TrackerComponent implements OnInit {
   countries: any = [];
   country: any = {};
-  selectedDate: number = 0;
-
+  selectedDate: number;
+  totalConfirmed: number = 0;
+  totalActiveCases: number = 0;
+  totalNewCases: number = 0;
+  totalDeaths: number = 0;
+  totalNewDeaths: number = 0;
+  totalRecovered: number = 0;
   constructor(private trackerSvc: TrackerService) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.getCountries();
     this.getCountryDK();
+    this.getTotalData();
   }
 
   getCountries() {
@@ -29,12 +35,24 @@ export class TrackerComponent implements OnInit {
     this.trackerSvc.getCountry(countryCode).subscribe((data) => {
       this.country = data.data;
       scroll(0, 0);
-      this.selectedDate = 0;
+      this.selectedDate = undefined;
     });
   }
   getCountryDK() {
     this.trackerSvc.getCountry('DK').subscribe((data) => {
       this.country = data.data;
+    });
+  }
+  getTotalData() {
+    this.trackerSvc.getCountries().subscribe((data) => {
+      for (let i = 0; i < data.data.length; i++) {
+        this.totalConfirmed += data.data[i].latest_data.confirmed;
+        this.totalActiveCases = this.totalConfirmed - this.totalRecovered;
+        this.totalNewCases += data.data[i].today.confirmed;
+        this.totalDeaths += data.data[i].latest_data.deaths;
+        this.totalNewDeaths += data.data[i].today.deaths;
+        this.totalRecovered += data.data[i].latest_data.recovered;
+      }
     });
   }
 }
