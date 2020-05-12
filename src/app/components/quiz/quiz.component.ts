@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { Question } from 'src/app/models/question';
 
 @Component({
   selector: 'app-quiz',
@@ -7,35 +8,47 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
   styleUrls: ['./quiz.component.scss']
 })
 export class QuizComponent implements OnInit {
-  movies = [
-    'Episode I - The Phantom Menace',
-    'Episode II - Attack of the Clones',
-    'Episode III - Revenge of the Sith',
-    'Episode IV - A New Hope',
-    'Episode V - The Empire Strikes Back',
-    'Episode VI - Return of the Jedi',
-    'Episode VII - The Force Awakens',
-    'Episode VIII - The Last Jedi',
-    'Episode IX – The Rise of Skywalker'
+
+  totalCorrect = 0;
+
+  questionOne: Question[] = [
+    {question: 'In your armpit', value: true},
+    {question: 'In your hands', value: false},
+    {question: 'Down towards your belly', value: false},
+    {question: 'In a direction without people', value: false},
   ];
+
+  questionTwo: Question[] = [
+    {question: 'The amount of time you need to be isolated from other people ', value: false},
+    {question: 'The amount of time it takes from getting infected to getting the disease', value: true},
+    {question: 'The amount of time you are sick', value: false},
+    {question: 'The amount of time a virus is in a country', value: false},
+  ]
+
+
+  questionThree: Question[] = [
+    {question: '10 - 20 seconds', value: false},
+    {question: '20 - 30 seconds', value: false},
+    {question: '30 - 40 seconds', value: false},
+    {question: '45 - 60 seconds', value: true},
+  ];
+
+
+  answersOne: Question[] = [];
+  answersTwo: Question[] = [];
+  answersThree: Question[] = [];
+
   constructor() { }
 
   ngOnInit(): void {
   }
-  todo = [
-    'Get to work',
-    'Pick up groceries',
-    'Go home',
-    'Fall asleep'
-  ];
 
-  done = [
-    'Get up',
-    'Brush teeth',
-    'Take a shower',
-    'Check e-mail',
-    'Walk dog'
-  ];
+  checkAnswer(answer: Question) {
+    if (answer.value) {
+      this.totalCorrect++;
+    }
+  }
+
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {

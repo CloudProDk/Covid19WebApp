@@ -1,24 +1,56 @@
-<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+<!-- <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
     <div class="example-box" *ngFor="let movie of movies" cdkDrag>{{movie}}</div>
+</div> -->
+
+
+
+
+<div class="center-stepper">
+    <mat-horizontal-stepper class="stepper" labelPosition="bottom" #stepper>
+        <!-- First Step Start -->
+        <mat-step>
+            <ng-template matStepLabel>Where should you cough?</ng-template>
+            <h2 class="center">Where should you cough?</h2>
+            <app-drag-list [questionList]="questionOne" [answerList]="answersOne"></app-drag-list>
+
+            <div>
+                <button class="button" *ngIf="answersOne.length > 0" mat-button matStepperNext
+                    (click)="checkAnswer(answersOne[0])">Next Question</button>
+            </div>
+        </mat-step>
+        <!-- First Step Stop -->
+
+        <!-- Second Step Start -->
+        <mat-step>
+            <ng-template matStepLabel>What does Incubation periode mean?</ng-template>
+            <h2 class="center">What does Incubation periode mean?</h2>
+
+            <app-drag-list [questionList]="questionTwo" [answerList]="answersTwo"></app-drag-list>
+
+            <div>
+                <button class="button" *ngIf="answersTwo.length > 0" mat-button matStepperNext
+                    (click)="checkAnswer(answersTwo[0])">Next Question</button>
+            </div>
+        </mat-step>
+        <!-- Second Step Stop -->
+
+        <!-- Third Step Start -->
+        <mat-step>
+            <ng-template matStepLabel>For how long should you wash your hands?</ng-template>
+            <h2 class="center">For how long should you wash your hands?</h2>
+
+            <app-drag-list [questionList]="questionThree" [answerList]="answersThree"></app-drag-list>
+
+            <div>
+                <button class="button" *ngIf="answersThree.length > 0" mat-button matStepperNext
+                    (click)="checkAnswer(answersThree[0])">Finish</button>
+            </div>
+        </mat-step>
+        <!-- Third Step Stop -->
+        <mat-step>
+            <ng-template matStepLabel>Done</ng-template>
+            <h2 class="center">Congratulations</h2>
+            <h3 class="center">You scored {{totalCorrect}} / 3</h3>
+        </mat-step>
+    </mat-horizontal-stepper>
 </div>
-
-<div class="example-container">
-    <h2>To do</h2>
-
-    <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo" [cdkDropListConnectedTo]="[doneList]"
-        class="example-list" (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item}}</div>
-    </div>
-</div>
-
-<div class="example-container">
-    <h2>Done</h2>
-
-    <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="done" [cdkDropListConnectedTo]="[todoList]"
-        class="example-list" (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
-    </div>
-</div>
-
-
-div
