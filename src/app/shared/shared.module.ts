@@ -4,13 +4,12 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatDividerModule, MatCardModule, MatIconModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
+import { NumberFormatPipe } from './number-format.pipe';
 import { DragListComponent } from './drag-list/drag-list.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
-
-
 @NgModule({
-  declarations: [SidebarComponent, DragListComponent],
+  declarations: [SidebarComponent, NumberFormatPipe, DragListComponent],
   imports: [
     CommonModule,
     MatSidenavModule,
