@@ -1,9 +1,9 @@
-import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
-import { FormsModule } from "@angular/forms";
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
-import { AppRoutingModule } from "./app-routing.module";
-import { AppComponent } from "./app.component";
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 
 //Angular Material Components
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -38,6 +38,7 @@ import { MatTableModule } from "@angular/material/table";
 import { MatSortModule } from "@angular/material/sort";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatRippleModule, MatNativeDateModule } from "@angular/material/core";
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { HeaderComponent } from "./shared/header/header.component";
 import { FooterComponent } from "./shared/footer/footer.component";
 import { SharedModule } from "./shared/shared.module";
@@ -47,8 +48,13 @@ import { HttpClientInMemoryWebApiModule } from "angular-in-memory-web-api";
 // import { InMemoryDataService } from './in-memory-data.service';
 
 // Additional modules
+
 import { ToastrModule } from "ngx-toastr";
 import { TrackerComponent } from "./components/tracker/tracker.component";
+import { MerchComponent } from './components/merch/merch.component';
+
+import { QuizComponent } from './components/quiz/quiz.component';
+
 
 @NgModule({
   declarations: [
@@ -56,6 +62,8 @@ import { TrackerComponent } from "./components/tracker/tracker.component";
     HeaderComponent,
     FooterComponent,
     TrackerComponent,
+    MerchComponent,
+    QuizComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -100,6 +108,7 @@ import { TrackerComponent } from "./components/tracker/tracker.component";
     ToastrModule.forRoot(),
     NgxSpinnerModule,
     FormsModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent],

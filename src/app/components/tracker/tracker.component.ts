@@ -21,8 +21,12 @@ export class TrackerComponent implements OnInit {
   dateToIndexDictionary: any = {};
   selectedDate: Date;
   selectedDateIndex: number = 0;
-  // days: Array<string> = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  // months: Array<string> = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  totalConfirmed: number = 0;
+  totalActiveCases: number = 0;
+  totalNewCases: number = 0;
+  totalDeaths: number = 0;
+  totalNewDeaths: number = 0;
+  totalRecovered: number = 0;
 
   constructor(private trackerSvc: TrackerService, private numberFormat: NumberFormatPipe, private decimalFormat: DecimalPipe) {
     const today = new Date(Date.UTC(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()));
@@ -33,9 +37,10 @@ export class TrackerComponent implements OnInit {
     this.dateToIndexDictionary[today.toDateString()] = 0;
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.getCountries();
     this.getCountryDK();
+    this.getTotalData();
   }
 
   getCountries() {
@@ -44,7 +49,7 @@ export class TrackerComponent implements OnInit {
     });
   }
 
-  getCountry(countryCode: String) {
+  getCountry(countryCode: string) {
     this.trackerSvc.getCountry(countryCode).subscribe((data) => {
       console.log(data.data);
       this.country = data.data;
@@ -90,5 +95,18 @@ export class TrackerComponent implements OnInit {
 
   formatNumber(number: Number, decimals: Number = 1) {
     return number >= 10000 ? this.numberFormat.transform(number, decimals) : this.decimalFormat.transform(number, '1.');
+  }
+  
+  getTotalData() {
+    this.trackerSvc.getCountries().subscribe((data) => {
+      for (let i = 0; i < data.data.length; i++) {
+        this.totalConfirmed += data.data[i].latest_data.confirmed;
+        this.totalActiveCases = this.totalConfirmed - this.totalRecovered;
+        this.totalNewCases += data.data[i].today.confirmed;
+        this.totalDeaths += data.data[i].latest_data.deaths;
+        this.totalNewDeaths += data.data[i].today.deaths;
+        this.totalRecovered += data.data[i].latest_data.recovered;
+      }
+    });
   }
 }

@@ -5,21 +5,23 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatDividerModule, MatCardModule, MatIconModule } from '@angular/material';
 import { RouterModule } from '@angular/router';
 import { NumberFormatPipe } from './number-format.pipe';
-
-
+import { DragListComponent } from './drag-list/drag-list.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
-  declarations: [SidebarComponent, NumberFormatPipe],
+  declarations: [SidebarComponent, NumberFormatPipe, DragListComponent],
   imports: [
     CommonModule,
     MatSidenavModule,
     MatDividerModule,
     RouterModule.forChild([]),
     MatIconModule,
+    DragDropModule
 
   ],
   exports: [
-    SidebarComponent
+    SidebarComponent,
+    DragListComponent
   ]
 })
 export class SharedModule { }
