@@ -27,7 +27,7 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  // background: var(--color-blue); //#f2f6fa;
+  background: #f2f6fa;
 }
 
 .background {
@@ -37,13 +37,17 @@ body {
   top: 0;
   left: 0;
   z-index: -1;
-  background: var(--color-blue); //#f2f6fa;
+  background: var(--color-blue);
   user-select: none;
 }
 
 .content, .container {
   padding: 0 calc((100% - 1200px) / 2);
   // padding-top: 65px;
+}
+
+.intro {
+  margin-top: 64px;
 }
 
 p {
@@ -64,6 +68,14 @@ h2 {
   font-weight: 500;
   font-size: 42px;
   line-height: 42px;
+  margin-top: 0;
+}
+
+h3 {
+  color: var(--color-light-text);
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 26px;
   margin-top: 0;
 }
 
@@ -365,4 +377,18 @@ div.table {
     max-height: calc(46px * 11); // 506px - 11 rows
     overflow-y: auto;
   }
+}
+
+.highlight {
+  padding: 2px 7px;
+  margin-right: 4px;
+  background-color: var(--color-yellow);
+  color: var(--color-dark-text);
+  font-size: 0.8em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border-radius: 2px;
+  cursor: default;
+  user-select: none;
+  vertical-align: top;
 }
