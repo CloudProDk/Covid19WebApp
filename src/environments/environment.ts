@@ -4,10 +4,11 @@
 
 export const environment = {
   production: false,
-  API_URL: 'https://movieprojectapi.azurewebsites.net/',
+  // API_URL: 'https://movieprojectapi.azurewebsites.net/',
+  API_URL: "http://localhost:3000/",
   USER_ID: 1,
-  MOVIEDBURL: 'https://api.themoviedb.org/3/',
-  MOVIEDBAPIKEY: 'a489ee60e8b906cfa58b9dd0fa595d25'
+  MOVIEDBURL: "https://api.themoviedb.org/3/",
+  MOVIEDBAPIKEY: "a489ee60e8b906cfa58b9dd0fa595d25",
 };
 
 /*
