@@ -47,9 +47,13 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 // import { InMemoryDataService } from './in-memory-data.service';
 
 // Additional modules
-import { ToastrModule } from 'ngx-toastr';
-import { TrackerComponent } from './components/tracker/tracker.component';
+
+import { ToastrModule } from "ngx-toastr";
+import { TrackerComponent } from "./components/tracker/tracker.component";
+import { MerchComponent } from './components/merch/merch.component';
+
 import { QuizComponent } from './components/quiz/quiz.component';
+
 
 @NgModule({
   declarations: [
@@ -57,6 +61,7 @@ import { QuizComponent } from './components/quiz/quiz.component';
     HeaderComponent,
     FooterComponent,
     TrackerComponent,
+    MerchComponent,
     QuizComponent,
   ],
   imports: [
