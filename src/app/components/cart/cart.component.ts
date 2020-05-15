@@ -9,6 +9,7 @@ import { CartItem } from "../../models/cartItem";
 })
 export class CartComponent implements OnInit {
   cart: any = [];
+  // cartItemID: number;
 
   constructor(private cartSvc: CartService) {}
 
@@ -17,9 +18,16 @@ export class CartComponent implements OnInit {
   }
   // ABC should be localstorage.uuid
   getCart() {
-    this.cartSvc.getCartWithItems("ABC").subscribe((data) => {
-      console.log(data);
-      this.cart = data;
-    });
+    this.cartSvc
+      .getCartWithItems(localStorage.getItem("uuid"))
+      .subscribe((data) => {
+        console.log(data);
+        this.cart = data;
+      });
+  }
+
+  removeCartItem(cartItemID: number) {
+    this.cartSvc.removeCartItem(cartItemID);
+    console.log(cartItemID);
   }
 }

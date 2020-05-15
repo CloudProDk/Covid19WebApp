@@ -12,5 +12,6 @@
       {{ cartItem.name }}
     </h3>
     <h4>{{ cartItem.price }} €</h4>
+    <button (click)="removeCartItem(cartItem.cart_item_id)">Remove</button>
   </div>
 </div>

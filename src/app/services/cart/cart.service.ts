@@ -16,4 +16,17 @@ export class CartService {
   }
 
   // Delete cart_item
+  removeCartItem(cartItemID: number) {
+    this.http
+      .delete(environment.API_URL + "shop/cart/" + `${cartItemID}`)
+      .toPromise()
+      .then(
+        (data) => {
+          console.log(data);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  }
 }

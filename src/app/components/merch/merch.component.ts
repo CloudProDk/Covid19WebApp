@@ -18,8 +18,11 @@ export class MerchComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProducts();
-    // this.addCart();
-    this.getCart();
+    if (!localStorage.getItem("uuid")) {
+      this.addCart();
+    } else {
+      this.getCart();
+    }
   }
 
   getProducts() {
@@ -29,18 +32,18 @@ export class MerchComponent implements OnInit {
     });
   }
 
-  // if !localstorage.uuid then run this method
   addCart() {
     const cart: Cart = {
       uuid: this.uuid,
     };
     this.cart = cart;
     this.merchSvc.addCart(cart);
+    localStorage.setItem("uuid", this.uuid);
+    this.getCart();
   }
-  // else
   getCart() {
-    //ABC should be localstorage uuid
-    this.merchSvc.getCart("ABC").subscribe((data) => {
+    console.log(localStorage.getItem("uuid"));
+    this.merchSvc.getCart(localStorage.getItem("uuid")).subscribe((data) => {
       console.log(data);
       this.cart = data;
     });
@@ -51,6 +54,7 @@ export class MerchComponent implements OnInit {
       cart: this.cart[0].id,
       product: productID,
     };
+    console.log(this.cart[0].id);
     this.merchSvc.addCartItem(cartItem);
   }
 }
