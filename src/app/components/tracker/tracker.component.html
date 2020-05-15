@@ -317,7 +317,7 @@
   </ng-template>
 
   <mat-form-field>
-    <input matInput placeholder="Search for a country"  #txtVal (keydown)="sort(txtVal.value)">
+    <input matInput placeholder="Search for a country"  #txtVal (keyup)="sort(txtVal.value)">
     <mat-icon matSuffix>search</mat-icon>
   </mat-form-field>
 
