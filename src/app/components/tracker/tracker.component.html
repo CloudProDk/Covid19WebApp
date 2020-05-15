@@ -316,6 +316,11 @@
     </div>
   </ng-template>
 
+  <mat-form-field>
+    <input matInput placeholder="Search for a country"  #txtVal (keydown)="sort(txtVal.value)">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+
   <div class="table shadow" style="margin-top: 90px;">
     <div class="header">
       <div class="row">
@@ -359,6 +364,7 @@
           {{ totalRecovered > 0 ? formatNumber(totalRecovered) : "" }}
         </div>
       </div>
+
       <div
         class="row"
         *ngFor="let country of countries"

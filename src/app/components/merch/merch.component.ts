@@ -3,6 +3,7 @@ import { MerchService } from "../../services/merch/merch.service";
 import { Cart } from "../../models/cart";
 import { CartItem } from "../../models/cartItem";
 import { v4 as uuidv4 } from "uuid";
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: "app-merch",
@@ -14,7 +15,7 @@ export class MerchComponent implements OnInit {
   cart: any = {};
   uuid: string = uuidv4();
 
-  constructor(private merchSvc: MerchService) {}
+  constructor(private merchSvc: MerchService, private spinner: NgxSpinnerService) {}
 
   ngOnInit(): void {
     this.getProducts();
@@ -26,9 +27,11 @@ export class MerchComponent implements OnInit {
   }
 
   getProducts() {
+    this.spinner.show();
     this.merchSvc.getProducts().subscribe((data) => {
       console.log(data);
       this.products = data;
+      this.spinner.hide();
     });
   }
 

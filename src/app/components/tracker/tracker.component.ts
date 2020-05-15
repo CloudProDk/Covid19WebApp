@@ -13,6 +13,7 @@ import { MatDatepickerInputEvent } from "@angular/material";
 })
 export class TrackerComponent implements OnInit {
   countries: any = [];
+  savedCountries: any = [];
   country: any = {};
   displayedColumns: string[] = [
     "country",
@@ -37,6 +38,8 @@ export class TrackerComponent implements OnInit {
   totalRecovered: number = 0;
   totalPopulation: number = 0;
   totalCritical: number = 0;
+
+  
 
   constructor(
     private trackerSvc: TrackerService,
@@ -66,7 +69,13 @@ export class TrackerComponent implements OnInit {
   getCountries() {
     this.trackerSvc.getCountries().subscribe((data) => {
       this.countries = data.data;
+      this.savedCountries = data.data;
     });
+  }
+
+  sort(searchResult: string) {
+    console.log(searchResult);
+    this.countries = this.savedCountries.filter(country => country.name.toLowerCase().includes(searchResult.toLowerCase()));
   }
 
   getCountry(countryCode: string) {
