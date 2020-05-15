@@ -107,6 +107,21 @@ export class TrackerComponent implements OnInit {
     this.country.latest_data.critical = this.totalCritical;
     this.country.today.deaths = this.totalNewDeaths;
     this.country.today.confirmed = this.totalNewCases;
+
+    scroll(0, 0);
+    this.selectedDateIndex = 0;
+
+    if (this.country.timeline && Array.isArray(this.country.timeline)) {
+      this.minDate = new Date(this.country.timeline.slice(-1)[0].date);
+      this.dateToIndexDictionary = {}; // Reset
+
+      for (let i = 0; i < this.country.timeline.length; i++) {
+        const timelineDate = this.country.timeline[i].date;
+        this.dateToIndexDictionary[timelineDate] = i;
+      }
+    } else {
+      this.minDate = new Date();
+    }
   }
 
   updateDate(event: MatDatepickerInputEvent<Date>) {
