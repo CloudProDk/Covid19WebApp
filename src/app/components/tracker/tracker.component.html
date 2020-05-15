@@ -2,29 +2,68 @@
 <div class="container">
   <div>
     <div class="inlineblock">
-      <div class="emoji" id="selected-country"
-        [ngStyle]="{backgroundImage: 'url(https://twemoji.maxcdn.com/v/latest/72x72/' + getEmojiUnicode(country.code) + '.png)'}">
-      </div>
+      <div
+        class="emoji"
+        id="selected-country"
+        [ngStyle]="{
+          backgroundImage:
+            'url(https://twemoji.maxcdn.com/v/latest/72x72/' +
+            getEmojiUnicode(country.code) +
+            '.png)'
+        }"
+      ></div>
       <h1>{{ country.name }}</h1>
     </div>
-    <div class="inlineblock right" id="date-select" matRipple (click)="datepicker.open()">
-      <span>{{ selectedDate.toJSON() == todayDate.toJSON() ? selectedDate.toLocaleDateString('en-US', { weekday: 'long' }) + ', ' : '' }}{{ selectedDate.toLocaleDateString('en-US', { month: 'long' }) }} {{ selectedDate.getDate() }}</span>
-      <h2>{{ selectedDate.toJSON() == todayDate.toJSON() ? 'Today' : selectedDate.toLocaleDateString('en-US', { weekday: 'long' }) }}</h2>
-      <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="datepicker" (dateChange)="updateDate($event)">
+    <div
+      class="inlineblock right"
+      id="date-select"
+      matRipple
+      (click)="datepicker.open()"
+    >
+      <span
+        >{{
+          selectedDate.toJSON() == todayDate.toJSON()
+            ? selectedDate.toLocaleDateString("en-US", { weekday: "long" }) +
+              ", "
+            : ""
+        }}{{ selectedDate.toLocaleDateString("en-US", { month: "long" }) }}
+        {{ selectedDate.getDate() }}</span
+      >
+      <h2>
+        {{
+          selectedDate.toJSON() == todayDate.toJSON()
+            ? "Today"
+            : selectedDate.toLocaleDateString("en-US", { weekday: "long" })
+        }}
+      </h2>
+      <input
+        matInput
+        [min]="minDate"
+        [max]="maxDate"
+        [matDatepicker]="datepicker"
+        (dateChange)="updateDate($event)"
+      />
       <mat-datepicker #datepicker></mat-datepicker>
     </div>
   </div>
 
-  <div class="stats" *ngIf="country.timeline && country.timeline[0]; else noTimeline">
+  <div
+    class="stats"
+    *ngIf="country.timeline && country.timeline[0]; else noTimeline"
+  >
     <div class="stat big box">
       <h2>Summary</h2>
       <div class="metrics">
         <div class="metric">
-          <span class="val">{{ formatNumber(country.timeline[selectedDateIndex].confirmed) }}</span>
+          <span class="val">{{
+            formatNumber(country.timeline[selectedDateIndex].confirmed)
+          }}</span>
           <span class="title">Total cases</span>
         </div>
         <div class="metric">
-          <span class="val">{{ formatNumber(country.timeline[selectedDateIndex].active) }}</span>
+          <span class="val">{{
+            formatNumber(country.timeline[selectedDateIndex].active)
+          }}</span>
           <span class="title">Active cases</span>
         </div>
         <div class="metric">
@@ -32,11 +71,15 @@
           <span class="title">Population</span>
         </div>
         <div class="metric">
-          <span class="val">{{ formatNumber(country.timeline[selectedDateIndex].recovered) }}</span>
+          <span class="val">{{
+            formatNumber(country.timeline[selectedDateIndex].recovered)
+          }}</span>
           <span class="title">Total recovered</span>
         </div>
         <div class="metric">
-          <span class="val color-yellow">{{ formatNumber(country.timeline[selectedDateIndex].deaths) }}</span>
+          <span class="val color-yellow">{{
+            formatNumber(country.timeline[selectedDateIndex].deaths)
+          }}</span>
           <span class="title">Total deaths</span>
         </div>
         <div class="metric">
@@ -50,22 +93,58 @@
       <h2>Active cases</h2>
       <div class="metrics">
         <div class="metric">
-          <span class="val">{{ formatNumber(country.timeline[selectedDateIndex].active) }}</span>
+          <span class="val">{{
+            formatNumber(country.timeline[selectedDateIndex].active)
+          }}</span>
           <span class="title">Active cases</span>
         </div>
         <div class="metric">
-          <span class="val">{{ country.timeline[selectedDateIndex].new_confirmed > 0 ? '+' + formatNumber(country.timeline[selectedDateIndex].new_confirmed) : '0' }}</span>
+          <span class="val">{{
+            country.timeline[selectedDateIndex].new_confirmed > 0
+              ? "+" +
+                formatNumber(country.timeline[selectedDateIndex].new_confirmed)
+              : "0"
+          }}</span>
           <span class="title">New cases</span>
         </div>
-        <div class="metric">
-          <span
-            class="val">{{ formatNumber(country.latest_data.confirmed - country.latest_data.recovered - country.latest_data.critical) }}</span>
+
+        <div
+          class="metric"
+          *ngIf="selectedDateIndex == 0; else noMildCondition"
+        >
+          <span class="val">{{
+            formatNumber(
+              country.latest_data.confirmed -
+                country.latest_data.recovered -
+                country.latest_data.deaths -
+                country.latest_data.critical
+            )
+          }}</span>
           <span class="title">Mild conditions</span>
         </div>
-        <div class="metric">
-          <span class="val color-yellow">{{ formatNumber(country.latest_data.critical) }}</span>
+        <div
+          class="metric"
+          *ngIf="selectedDateIndex == 0; else noCritCondition"
+        >
+          <span class="val color-yellow">{{
+            formatNumber(country.latest_data.critical)
+          }}</span>
           <span class="title">Critical cond.</span>
         </div>
+        <ng-template #noMildCondition>
+          <div class="metric">
+            <span class="val">
+              -
+            </span>
+            <span class="title">Mild conditions</span>
+          </div>
+        </ng-template>
+        <ng-template #noCritCondition>
+          <div class="metric">
+            <span class="val color-yellow">-</span>
+            <span class="title">Critical cond.</span>
+          </div>
+        </ng-template>
       </div>
     </div>
 
@@ -73,19 +152,33 @@
       <h2>Closed cases</h2>
       <div class="metrics">
         <div class="metric">
-          <span class="val">{{ formatNumber(country.timeline[selectedDateIndex].recovered) }}</span>
+          <span class="val">{{
+            formatNumber(country.timeline[selectedDateIndex].recovered)
+          }}</span>
           <span class="title">Total recovered</span>
         </div>
         <div class="metric">
-          <span class="val">{{ country.timeline[selectedDateIndex].new_recovered > 0 ? '+' + formatNumber(country.timeline[selectedDateIndex].new_recovered) : '0' }}</span>
+          <span class="val">{{
+            country.timeline[selectedDateIndex].new_recovered > 0
+              ? "+" +
+                formatNumber(country.timeline[selectedDateIndex].new_recovered)
+              : "0"
+          }}</span>
           <span class="title">New recoveries</span>
         </div>
         <div class="metric">
-          <span class="val color-yellow">{{ formatNumber(country.timeline[selectedDateIndex].deaths) }}</span>
+          <span class="val color-yellow">{{
+            formatNumber(country.timeline[selectedDateIndex].deaths)
+          }}</span>
           <span class="title">Total deaths</span>
         </div>
         <div class="metric">
-          <span class="val color-yellow">{{ country.timeline[selectedDateIndex].new_deaths > 0 ? '+' + formatNumber(country.timeline[selectedDateIndex].new_deaths) : '0' }}</span>
+          <span class="val color-yellow">{{
+            country.timeline[selectedDateIndex].new_deaths > 0
+              ? "+" +
+                formatNumber(country.timeline[selectedDateIndex].new_deaths)
+              : "0"
+          }}</span>
           <span class="title">New deaths</span>
         </div>
       </div>
@@ -97,11 +190,22 @@
         <h2>Summary</h2>
         <div class="metrics">
           <div class="metric">
-            <span class="val">{{ country.latest_data && country.latest_data.confirmed ? formatNumber(country.latest_data.confirmed) : '-' }}</span>
+            <span class="val">{{
+              country.latest_data && country.latest_data.confirmed
+                ? formatNumber(country.latest_data.confirmed)
+                : "-"
+            }}</span>
             <span class="title">Total cases</span>
           </div>
           <div class="metric">
-            <span class="val">{{ country.latest_data && country.latest_data.confirmed ? formatNumber(country.latest_data.confirmed - country.latest_data.recovered) : '-' }}</span>
+            <span class="val">{{
+              country.latest_data && country.latest_data.confirmed
+                ? formatNumber(
+                    country.latest_data.confirmed -
+                      country.latest_data.recovered
+                  )
+                : "-"
+            }}</span>
             <span class="title">Active cases</span>
           </div>
           <div class="metric">
@@ -109,11 +213,19 @@
             <span class="title">Population</span>
           </div>
           <div class="metric">
-            <span class="val">{{ country.latest_data && country.latest_data.recovered ? formatNumber(country.latest_data.recovered) : '-' }}</span>
+            <span class="val">{{
+              country.latest_data && country.latest_data.recovered
+                ? formatNumber(country.latest_data.recovered)
+                : "-"
+            }}</span>
             <span class="title">Total recovered</span>
           </div>
           <div class="metric">
-            <span class="val color-yellow">{{ country.latest_data && country.latest_data.deaths ? formatNumber(country.latest_data.deaths) : '-' }}</span>
+            <span class="val color-yellow">{{
+              country.latest_data && country.latest_data.deaths
+                ? formatNumber(country.latest_data.deaths)
+                : "-"
+            }}</span>
             <span class="title">Total deaths</span>
           </div>
           <div class="metric">
@@ -127,20 +239,42 @@
         <h2>Active cases</h2>
         <div class="metrics">
           <div class="metric">
-            <span class="val">{{ country.latest_data && country.latest_data.confirmed ? formatNumber(country.latest_data.confirmed - country.latest_data.recovered) : '-' }}</span>
+            <span class="val">{{
+              country.latest_data && country.latest_data.confirmed
+                ? formatNumber(
+                    country.latest_data.confirmed -
+                      country.latest_data.recovered
+                  )
+                : "-"
+            }}</span>
             <span class="title">Active cases</span>
           </div>
           <div class="metric">
-            <span class="val">{{ country.today && country.today.confirmed ? '+' + formatNumber(country.today.confirmed) : '-' }}</span>
+            <span class="val">{{
+              country.today && country.today.confirmed
+                ? "+" + formatNumber(country.today.confirmed)
+                : "-"
+            }}</span>
             <span class="title">New cases</span>
           </div>
           <div class="metric">
-            <span
-              class="val">{{ country.latest_data && country.latest_data.confirmed ? formatNumber(country.latest_data.confirmed - country.latest_data.recovered - country.latest_data.critical) : '-' }}</span>
+            <span class="val">{{
+              country.latest_data && country.latest_data.confirmed
+                ? formatNumber(
+                    country.latest_data.confirmed -
+                      country.latest_data.recovered -
+                      country.latest_data.critical
+                  )
+                : "-"
+            }}</span>
             <span class="title">Mild conditions</span>
           </div>
           <div class="metric">
-            <span class="val color-yellow">{{ country.latest_data && country.latest_data.critical ? formatNumber(country.latest_data.critical) : '-' }}</span>
+            <span class="val color-yellow">{{
+              country.latest_data && country.latest_data.critical
+                ? formatNumber(country.latest_data.critical)
+                : "-"
+            }}</span>
             <span class="title">Critical cond.</span>
           </div>
         </div>
@@ -150,7 +284,11 @@
         <h2>Closed cases</h2>
         <div class="metrics">
           <div class="metric">
-            <span class="val">{{ country.latest_data && country.latest_data.recovered ? formatNumber(country.latest_data.recovered) : '-' }}</span>
+            <span class="val">{{
+              country.latest_data && country.latest_data.recovered
+                ? formatNumber(country.latest_data.recovered)
+                : "-"
+            }}</span>
             <span class="title">Total recovered</span>
           </div>
           <div class="metric">
@@ -158,11 +296,19 @@
             <span class="title">New recoveries</span>
           </div>
           <div class="metric">
-            <span class="val color-yellow">{{ country.latest_data && country.latest_data.deaths ? formatNumber(country.latest_data.deaths) : '-' }}</span>
+            <span class="val color-yellow">{{
+              country.latest_data && country.latest_data.deaths
+                ? formatNumber(country.latest_data.deaths)
+                : "-"
+            }}</span>
             <span class="title">Total deaths</span>
           </div>
           <div class="metric">
-            <span class="val color-yellow">{{ country.today && country.today.deaths ? '+' + formatNumber(country.today.deaths) : '-' }}</span>
+            <span class="val color-yellow">{{
+              country.today && country.today.deaths
+                ? "+" + formatNumber(country.today.deaths)
+                : "-"
+            }}</span>
             <span class="title">New deaths</span>
           </div>
         </div>
@@ -183,37 +329,122 @@
       </div>
     </div>
     <div class="body">
-      <div class="row" *ngFor="let country of countries" (click)="getCountry(country.code)">
-
+      <div class="row" (click)="getGlobalCountry()">
+        <div class="column" title="Global">
+          <div
+            class="emoji"
+            [ngStyle]="{
+              backgroundImage:
+                'url(https://twemoji.maxcdn.com/v/latest/72x72/1f30e.png)'
+            }"
+          ></div>
+          <span class="thin">Global</span>
+        </div>
+        <div class="column">
+          {{ totalConfirmed > 0 ? formatNumber(totalConfirmed) : "" }}
+        </div>
+        <div class="column">
+          {{ totalActiveCases > 0 ? formatNumber(totalActiveCases) : "" }}
+        </div>
+        <div class="column color-blue">
+          {{ totalNewCases > 0 ? formatNumber(totalNewCases) : "" }}
+        </div>
+        <div class="column">
+          {{ totalDeaths > 0 ? formatNumber(totalDeaths) : "" }}
+        </div>
+        <div class="column color-yellow">
+          {{ totalNewDeaths > 0 ? formatNumber(totalNewDeaths) : "" }}
+        </div>
+        <div class="column">
+          {{ totalRecovered > 0 ? formatNumber(totalRecovered) : "" }}
+        </div>
+      </div>
+      <div
+        class="row"
+        *ngFor="let country of countries"
+        (click)="getCountry(country.code)"
+      >
         <div class="column" title="{{ country.name }}">
-          <div class="emoji" [ngStyle]="{backgroundImage: 'url(https://twemoji.maxcdn.com/v/latest/72x72/' + getEmojiUnicode(country.code) + '.png)'}"></div>
+          <div
+            class="emoji"
+            [ngStyle]="{
+              backgroundImage:
+                'url(https://twemoji.maxcdn.com/v/latest/72x72/' +
+                getEmojiUnicode(country.code) +
+                '.png)'
+            }"
+          ></div>
           <span class="thin">{{ country.name }}</span>
         </div>
-        
-        <div class="column">{{ country.latest_data.confirmed > 0 ? formatNumber(country.latest_data.confirmed) : '' }}</div>
 
-        <div class="column">{{ (country.latest_data.confirmed - country.latest_data.recovered) > 0 ? formatNumber(country.latest_data.confirmed - country.latest_data.recovered) : '' }}</div>
+        <div class="column">
+          {{
+            country.latest_data.confirmed > 0
+              ? formatNumber(country.latest_data.confirmed)
+              : ""
+          }}
+        </div>
 
-        <div class="column color-blue">{{ country.today.confirmed > 0 ? '+' + formatNumber(country.today.confirmed) : '' }}</div>
+        <div class="column">
+          {{
+            country.latest_data.confirmed - country.latest_data.recovered > 0
+              ? formatNumber(
+                  country.latest_data.confirmed - country.latest_data.recovered
+                )
+              : ""
+          }}
+        </div>
 
-        <div class="column">{{ country.latest_data.deaths > 0 ? formatNumber(country.latest_data.deaths) : '' }}</div>
+        <div class="column color-blue">
+          {{
+            country.today.confirmed > 0
+              ? "+" + formatNumber(country.today.confirmed)
+              : ""
+          }}
+        </div>
 
-        <div class="column color-yellow">{{ country.today.deaths > 0 ? '+' + formatNumber(country.today.deaths) : '' }}</div>
+        <div class="column">
+          {{
+            country.latest_data.deaths > 0
+              ? formatNumber(country.latest_data.deaths)
+              : ""
+          }}
+        </div>
 
-        <div class="column">{{ country.latest_data.recovered > 0 ? formatNumber(country.latest_data.recovered) : '' }}</div>
+        <div class="column color-yellow">
+          {{
+            country.today.deaths > 0
+              ? "+" + formatNumber(country.today.deaths)
+              : ""
+          }}
+        </div>
+
+        <div class="column">
+          {{
+            country.latest_data.recovered > 0
+              ? formatNumber(country.latest_data.recovered)
+              : ""
+          }}
+        </div>
       </div>
     </div>
   </div>
 
   <table mat-table [dataSource]="countries" class="table shadow" *ngIf="false">
-
     <!-- Country Column -->
     <ng-container matColumnDef="country">
       <th mat-header-cell *matHeaderCellDef>Country</th>
       <td mat-cell *matCellDef="let country" (click)="getCountry(country.code)">
-        <div class="emoji"
-          [ngStyle]="{backgroundImage: 'url(https://twemoji.maxcdn.com/v/latest/72x72/' + getEmojiUnicode(country.code) + '.png)'}">
-        </div> <span class="thin">{{ country.name }}</span>
+        <div
+          class="emoji"
+          [ngStyle]="{
+            backgroundImage:
+              'url(https://twemoji.maxcdn.com/v/latest/72x72/' +
+              getEmojiUnicode(country.code) +
+              '.png)'
+          }"
+        ></div>
+        <span class="thin">{{ country.name }}</span>
       </td>
     </ng-container>
 
@@ -229,7 +460,11 @@
     <ng-container matColumnDef="activeCases">
       <th mat-header-cell *matHeaderCellDef>Active cases</th>
       <td mat-cell *matCellDef="let country" (click)="getCountry(country.code)">
-        <span>{{ formatNumber(country.latest_data.confirmed - country.latest_data.recovered) }}</span>
+        <span>{{
+          formatNumber(
+            country.latest_data.confirmed - country.latest_data.recovered
+          )
+        }}</span>
       </td>
     </ng-container>
 
@@ -266,6 +501,6 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 </div>

@@ -7,7 +7,7 @@ export class Country {
       };
       number: String;
       code: String;
-      population: String;
+      population: number;
       updated_at: String;
       today: {
         deaths: number;

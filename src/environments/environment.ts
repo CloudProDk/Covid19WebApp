@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  API_URL: 'https://covid19trackerapi.azurewebsites.net',
-
+  API_URL: "https://covid19trackerapi.azurewebsites.net/",
 };
 
 /*
