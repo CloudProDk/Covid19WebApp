@@ -21,3 +21,9 @@ $background: #282727;
 ::ng-deep .mat-focused .mat-form-field-underline .mat-form-field-ripple {
   background-color: $primary !important;
 }
+
+.quote{
+  color: white;
+  font-style: italic;
+  font-weight: lighter
+}

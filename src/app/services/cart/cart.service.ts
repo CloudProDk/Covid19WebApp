@@ -16,18 +16,17 @@ export class CartService {
   }
 
   // Delete cart_item
-  async removeCartItem(cartItemID: number, parent) {
+  async removeCartItem(cartItemID: number) {
     await this.http
-      .delete(environment.API_URL + "shop/cart/" + `${cartItemID}`)
-      .toPromise()
-      .then(
-        (data) => {
-          parent.ngOnInit();
-          console.log(data);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+      .delete(environment.API_URL + "shop/cart/" + `${cartItemID}`).toPromise().then(data => {
+        console.log(data);
+      }, error => {
+        //console.log(error);
+      });
+  }
+
+  removeItemFromCart(cartItemID: number) {
+    this.http
+      .delete(environment.API_URL + "shop/cart/" + `${cartItemID}`);
   }
 }
