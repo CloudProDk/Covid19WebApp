@@ -1,0 +1,18 @@
+<h1>Cart</h1>
+
+<div>
+  <h2>Total price: {{ totalPrice }} €</h2>
+  <div class="card" *ngFor="let cartItem of cart">
+    <img
+      src="{{ cartItem.img_url }}"
+      alt="{{ cartItem.name }}"
+      class="imgSize"
+    />
+    <h3>
+      {{ cartItem.name }}
+    </h3>
+    <p>Amount: {{ cartItem.number_of_items }}</p>
+    <h4>{{ cartItem.total_price }} €</h4>
+    <button (click)="removeCartItem(cartItem.cart_item_id)">Remove</button>
+  </div>
+</div>
