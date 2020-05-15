@@ -2,7 +2,7 @@
 
 <div>
   <h2>Total price: {{ totalPrice }} €</h2>
-  <div *ngFor="let cartItem of cart">
+  <div class="card" *ngFor="let cartItem of cart">
     <img
       src="{{ cartItem.img_url }}"
       alt="{{ cartItem.name }}"

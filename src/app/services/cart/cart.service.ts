@@ -16,12 +16,13 @@ export class CartService {
   }
 
   // Delete cart_item
-  removeCartItem(cartItemID: number) {
-    this.http
+  async removeCartItem(cartItemID: number, parent) {
+    await this.http
       .delete(environment.API_URL + "shop/cart/" + `${cartItemID}`)
       .toPromise()
       .then(
         (data) => {
+          parent.ngOnInit();
           console.log(data);
         },
         (error) => {
