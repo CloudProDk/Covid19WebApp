@@ -1,16 +1,18 @@
 <div class="dragContainer">
-    <div class="example-container">
-        <div cdkDropList #qList="cdkDropList" [cdkDropListData]="questionList"
-            [cdkDropListConnectedTo]="[aList]" class="example-list" (cdkDropListDropped)="drop($event)">
-            <div class="example-box" *ngFor="let item of questionList" cdkDrag>{{item.question}}</div>
-        </div>
+  <div class="drop-container">
+    <h4>Choices</h4>
+    <div cdkDropList #qList="cdkDropList" [cdkDropListData]="questionList" [cdkDropListConnectedTo]="[aList]"
+      class="drop-item-list" (cdkDropListDropped)="drop($event)">
+      <div class="drop-item" *ngFor="let item of questionList" cdkDrag>{{item.question}}</div>
     </div>
+  </div>
 
-    <div class="example-container">
-        <div cdkDropList #aList="cdkDropList" [cdkDropListData]="answerList"
-            [cdkDropListConnectedTo]="[qList]" class="example-list" (cdkDropListDropped)="drop($event)">
-            <div class="example-box" *ngFor="let item of answerList" cdkDrag>{{item.question}}</div>
-        </div>
+  <div class="drop-container">
+    <h4>Answer</h4>
+    <div cdkDropList #aList="cdkDropList" [cdkDropListData]="answerList" [cdkDropListConnectedTo]="[qList]"
+      class="drop-item-list" (cdkDropListDropped)="drop($event)">
+      <div class="drop-item" *ngFor="let item of answerList" cdkDrag>{{item.question}}</div>
     </div>
+  </div>
 </div>
-<p class="center">Drag the correct answer to the answer box</p>
+<p class="hint"><span class="highlight">Help</span>Drag the correct answer to the answer box on the right.</p>

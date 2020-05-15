@@ -4,10 +4,8 @@
 
 export const environment = {
   production: false,
-  API_URL: "https://covid19trackerapi.azurewebsites.net/",
-  USER_ID: 1,
-  MOVIEDBURL: "https://api.themoviedb.org/3/",
-  MOVIEDBAPIKEY: "a489ee60e8b906cfa58b9dd0fa595d25",
+  API_URL: 'https://covid19trackerapi.azurewebsites.net',
+
 };
 
 /*
