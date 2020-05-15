@@ -1,23 +1,29 @@
-<h1>Merchandise</h1>
-<button routerLink="/cart">Go to cart</button>
-<div class="searchcontainer">
-  <div class="merchcontainer">
-    <mat-card class="card" *ngFor="let product of products">
-      <img
-        src="{{ product.img_url }}"
-        alt="{{ product.name }}"
-        class="imgSize"
-      />
-      <h3>
-        {{ product.name }}
-      </h3>
-      <h4>{{ product.price }} €</h4>
-      <h5>{{ product.quantity }} left</h5>
-      <button mat-button (click)="addCartItem(product.id)">
-        Add to cart
-      </button>
-    </mat-card>
-    <!-- 
+<div class="background"></div>
+<div class="container">
+  <div class="intro">
+    <h1 class="inlineblock">Merchandise</h1>
+    <button class="btn-secondary" style="float:right;" routerLink="/cart" mat-button>Go to cart</button>
+  </div>
+
+  <div class="searchcontainer">
+    <input class="input-primary" type="search" placeholder="Search..." value="" />
+    <div class="merchcontainer">
+      <div class="card box shadow" *ngFor="let product of products">
+        <div class="product-img">
+          <img src="{{ product.img_url }}" alt="{{ product.name }}" />
+        </div>
+        <div class="product-details">
+          <h3>
+            {{ product.name }}
+          </h3>
+          <span class="price">{{ product.price }}€</span>
+          <button class="btn-primary" mat-button (click)="addCartItem(product.id)">
+            Add to cart
+          </button>
+          <span class="remaining">{{ product.quantity }} in stock</span>
+        </div>
+      </div>
+      <!-- 
         <mat-card class="Box2">
             
             <button mat-button>Add to cart</button>
@@ -44,5 +50,6 @@
             <br>
             <h4>150 DKK</h4>
         </mat-card> -->
+    </div>
   </div>
 </div>
