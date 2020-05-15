@@ -6,4 +6,5 @@ export class Cart {
   name?: String;
   price?: number;
   quantity?: number;
+  img_url?: number;
 }

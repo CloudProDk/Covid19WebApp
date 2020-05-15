@@ -1,0 +1,16 @@
+<h1>Cart</h1>
+
+<div>
+  <h2>Total price: {{ cart[0].total_price }}</h2>
+  <div *ngFor="let cartItem of cart">
+    <img
+      src="{{ cartItem.img_url }}"
+      alt="{{ cartItem.name }}"
+      class="imgSize"
+    />
+    <h3>
+      {{ cartItem.name }}
+    </h3>
+    <h4>{{ cartItem.price }} €</h4>
+  </div>
+</div>

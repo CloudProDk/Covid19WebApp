@@ -12,7 +12,6 @@ import { v4 as uuidv4 } from "uuid";
 export class MerchComponent implements OnInit {
   products: any = [];
   cart: any = {};
-  cartID: number;
   uuid: string = uuidv4();
 
   constructor(private merchSvc: MerchService) {}
@@ -44,14 +43,12 @@ export class MerchComponent implements OnInit {
     this.merchSvc.getCart("ABC").subscribe((data) => {
       console.log(data);
       this.cart = data;
-      this.cartID = data[0].id;
-      console.log(data[0].id);
     });
   }
 
   addCartItem(productID: number) {
     const cartItem: CartItem = {
-      cart: this.cartID,
+      cart: this.cart[0].id,
       product: productID,
     };
     this.merchSvc.addCartItem(cartItem);

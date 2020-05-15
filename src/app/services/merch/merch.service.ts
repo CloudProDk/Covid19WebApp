@@ -18,9 +18,6 @@ export class MerchService {
   getCart(uuid: string) {
     return this.http.get<Cart>(environment.API_URL + "cart/" + `${uuid}`);
   }
-  getCartWithItems(uuid: string) {
-    return this.http.get<Cart>(environment.API_URL + "shop/cart/" + `${uuid}`);
-  }
   addCart(cart: Cart) {
     this.http.post<Cart>(environment.API_URL + "shop/addCart", cart).subscribe(
       (data) => {
