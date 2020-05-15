@@ -8,4 +8,5 @@ export class Cart {
   price?: number;
   quantity?: number;
   img_url?: number;
+  number_of_items?: number;
 }

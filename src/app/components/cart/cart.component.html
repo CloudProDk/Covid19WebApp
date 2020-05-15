@@ -1,7 +1,7 @@
 <h1>Cart</h1>
 
 <div>
-  <h2>Total price: {{ cart[0].total_price }}</h2>
+  <h2>Total price: {{ totalPrice }} €</h2>
   <div *ngFor="let cartItem of cart">
     <img
       src="{{ cartItem.img_url }}"
@@ -11,7 +11,8 @@
     <h3>
       {{ cartItem.name }}
     </h3>
-    <h4>{{ cartItem.price }} €</h4>
+    <p>Amount: {{ cartItem.number_of_items }}</p>
+    <h4>{{ cartItem.total_price }} €</h4>
     <button (click)="removeCartItem(cartItem.cart_item_id)">Remove</button>
   </div>
 </div>
