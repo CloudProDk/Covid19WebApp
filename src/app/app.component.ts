@@ -10,7 +10,18 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  public qoute: any;
+  public quote: string;
+  private quotes: Array<string> = [
+    "Wash your hands while you wait",
+    "Stay inside!",
+    "Be mindful of others!",
+    "Don't panic...",
+    "Don't hoard...",
+    "Keep a safe distance",
+    "Cough in your sleeve!",
+    "Sneeze in your sleeve!",
+    "Avoid handshakes!"
+  ]
 
   constructor(private toast: ToastrService, private spinner: NgxSpinnerService, private http: HttpClient) {}
 
@@ -19,9 +30,7 @@ export class AppComponent implements OnInit {
   }
 
   getQuote() {
-    this.http.get('http://swquotesapi.digitaljedi.dk/api/SWQuote/RandomStarWarsQuote').subscribe(data => {
-      this.qoute = data;
-    });
+    this.quote = this.quotes[Math.floor(Math.random() * this.quotes.length)];
   }
 
 
