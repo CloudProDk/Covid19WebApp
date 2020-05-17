@@ -1,18 +1,21 @@
-<h1>Cart</h1>
+<div class="background"></div>
+<div class="container">
+  <div class="intro">
+    <h1>Cart</h1>
+  </div>
 
-<div>
-  <h2>Total price: {{ totalPrice }} €</h2>
-  <div class="card" *ngFor="let cartItem of cart">
-    <img
-      src="{{ cartItem.img_url }}"
-      alt="{{ cartItem.name }}"
-      class="imgSize"
-    />
-    <h3>
-      {{ cartItem.name }}
-    </h3>
-    <p>Amount: {{ cartItem.number_of_items }}</p>
-    <h4>{{ cartItem.total_price }} €</h4>
-    <button (click)="removeCartItem(cartItem.cart_item_id)">Remove</button>
+  <div>
+    <h2>Total price: {{ totalPrice }}€</h2>
+    <div class="product-list">
+      <div class="card box shadow" *ngFor="let cartItem of cart">
+        <img src="{{ cartItem.img_url }}" alt="{{ cartItem.name }}" />
+        <div class="product-details">
+          <h3>{{ cartItem.name }}</h3>
+          <span class="quantity">{{ cartItem.number_of_items }} × {{ cartItem.price }}€</span>
+          <span class="price">{{ cartItem.total_price }}€ total</span>
+          <button class="btn-secondary" (click)="removeCartItem(cartItem.cart_item_id)" mat-button>Remove 1 from cart</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
