@@ -1,8 +1,45 @@
-.imgSize {
-  width: 10rem;
-  height: auto;
+.background {
+  height: 355px !important;
 }
+
 .card {
-  margin-bottom: 1rem;
-  width: 30%;
+  background-color: #ffffff;
+  width: 100%;
+
+  h3 {
+    color: var(--color-dark-text);
+    font-size: 22px;
+  }
+
+  img {
+    width: auto;
+    height: 150px;
+    display: inline-block;
+  }
+
+  .product-details {
+    float: right;
+    text-align: right;
+
+    span {
+      display: block;
+
+      &.quantity {
+        color: var(--color-dark-text-alt);
+        margin-top: 12px;
+        margin-bottom: 5px;
+      }
+
+      &.price {
+        color: var(--color-dark-text);
+        font-weight: 500;
+        margin-bottom: 22px;
+      }
+    }
+  }
+}
+
+.product-list {
+  display: grid;
+  row-gap: 22px;
 }
