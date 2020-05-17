@@ -31,7 +31,7 @@ export class MerchComponent implements OnInit {
     this.merchSvc.getProducts().subscribe((data) => {
       console.log(data);
       this.products = data;
-      // this.spinner.hide();
+      this.spinner.hide();
     });
   }
 
