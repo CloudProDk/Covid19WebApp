@@ -10,10 +10,6 @@
 .searchcontainer {
   input {
     width: 375px;
-
-    &::placeholder {
-      color: var(--color-light-text-alt);
-    }
   }
 }
 
