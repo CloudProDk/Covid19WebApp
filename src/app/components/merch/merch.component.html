@@ -19,7 +19,7 @@
           <button *ngIf="product.quantity > 0" class="btn-primary" mat-button (click)="addCartItem(product.id, product.name)">
             Add to cart
           </button>
-          <button *ngIf="product.quantity <= 0" class="btn-primary" disabled mat-button (click)="addCartItem(product.id, product.name)">
+          <button *ngIf="product.quantity <= 0" class="btn-secondary" disabled mat-button (click)="addCartItem(product.id, product.name)">
             Out of stock
           </button>
           <span class="remaining">{{ product.quantity }} in stock</span>
