@@ -5,12 +5,13 @@ import { environment } from "src/environments/environment";
 import { Product } from "../../models/product";
 import { Cart } from "../../models/cart";
 import { CartItem } from "../../models/cartItem";
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: "root",
 })
 export class MerchService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private toastr: ToastrService) {}
 
   getProducts(): Observable<Product> {
     return this.http.get<Product>(environment.API_URL + "shop");
@@ -28,11 +29,13 @@ export class MerchService {
       }
     );
   }
-  addCartItem(cartItem: CartItem) {
+  addCartItem(cartItem: CartItem, item: string) {
     this.http
       .post<CartItem>(environment.API_URL + "shop/addCartItem", cartItem)
       .subscribe(
         (data) => {
+          console.log(item)
+          this.toastr.success(item + ' added to cart');
           console.log(data);
         },
         (error) => {

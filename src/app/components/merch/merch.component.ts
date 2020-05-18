@@ -48,16 +48,17 @@ export class MerchComponent implements OnInit {
     console.log(localStorage.getItem("uuid"));
     this.merchSvc.getCart(localStorage.getItem("uuid")).subscribe((data) => {
       console.log(data);
+      console.log(this.cart.length)
       this.cart = data;
     });
   }
 
-  addCartItem(productID: number) {
+  addCartItem(productID: number, item: string) {
     const cartItem: CartItem = {
       cart: this.cart[0].id,
       product: productID,
     };
     console.log(this.cart[0].id);
-    this.merchSvc.addCartItem(cartItem);
+    this.merchSvc.addCartItem(cartItem, item);
   }
 }
