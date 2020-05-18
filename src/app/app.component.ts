@@ -20,7 +20,8 @@ export class AppComponent implements OnInit {
     "Keep a safe distance",
     "Cough in your sleeve!",
     "Sneeze in your sleeve!",
-    "Avoid handshakes!"
+    "Avoid handshakes!",
+    "Clean, hands must be.. Mhhh"
   ]
 
   constructor(private toast: ToastrService, private spinner: NgxSpinnerService, private http: HttpClient) {}
