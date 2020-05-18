@@ -44,8 +44,7 @@ import { FooterComponent } from "./shared/footer/footer.component";
 import { SharedModule } from "./shared/shared.module";
 import { HttpClientModule } from "@angular/common/http";
 import { NgxSpinnerModule } from "ngx-spinner";
-import { HttpClientInMemoryWebApiModule } from "angular-in-memory-web-api";
-// import { InMemoryDataService } from './in-memory-data.service';
+import {MatBadgeModule} from '@angular/material/badge';
 
 // Additional modules
 
@@ -110,6 +109,7 @@ import { CartComponent } from "./components/cart/cart.component";
     NgxSpinnerModule,
     FormsModule,
     DragDropModule,
+    MatBadgeModule
   ],
   providers: [],
   bootstrap: [AppComponent],

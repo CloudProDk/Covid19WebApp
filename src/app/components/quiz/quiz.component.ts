@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Question } from 'src/app/models/question';
+import { HighscoreService } from 'src/app/services/highscore/highscore.service';
+import { HighScore } from 'src/app/models/highscore';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-quiz',
@@ -38,7 +41,10 @@ export class QuizComponent implements OnInit {
   answersTwo: Question[] = [];
   answersThree: Question[] = [];
 
-  constructor() { }
+  playerName: string;
+  highscores: any = [];
+  displayedColumns: string[] = ['score', 'name', 'created'];
+  constructor(private highScoreSvc: HighscoreService, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
   }
@@ -59,6 +65,25 @@ export class QuizComponent implements OnInit {
                         event.previousIndex,
                         event.currentIndex);
     }
+  }
+
+  async getHighScore() {
+
+    this.spinner.show();  
+    const highscore: HighScore = {
+      score: this.totalCorrect,
+      created: new Date(),
+      name: this.playerName
+    }
+
+    await this.highScoreSvc.addHighScore(highscore);
+
+    await this.highScoreSvc.getHighScores().subscribe(data => {
+      this.highscores = data;
+
+      this.highscores.sort((a, b) => b.score - a.score);
+      this.spinner.hide();
+    });
   }
 }
 

@@ -54,3 +54,12 @@
 ::ng-deep .mat-horizontal-stepper-header-container {
   display: none !important;
 }
+
+.highscore-table{
+  width: 100%;
+}
+
+.table-container{
+  height: 400px;
+  overflow: auto;
+}

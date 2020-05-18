@@ -4,6 +4,7 @@ import { Cart } from "../../models/cart";
 import { CartItem } from "../../models/cartItem";
 import { v4 as uuidv4 } from "uuid";
 import { NgxSpinnerService } from "ngx-spinner";
+import { CartService } from 'src/app/services/cart/cart.service';
 
 @Component({
   selector: "app-merch",
@@ -12,12 +13,16 @@ import { NgxSpinnerService } from "ngx-spinner";
 })
 export class MerchComponent implements OnInit {
   products: any = [];
+  savedProducts: any = [];
   cart: any = {};
   uuid: string = uuidv4();
+  cartItems: any = [];
+  numberOfCartItems: number = 0;
 
   constructor(
     private merchSvc: MerchService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private cartSvc: CartService
   ) {}
 
   ngOnInit(): void {
@@ -27,6 +32,7 @@ export class MerchComponent implements OnInit {
     } else {
       this.getCart();
     }
+    this.getNumberOfItemsInCart();
   }
 
   getProducts() {
@@ -34,8 +40,28 @@ export class MerchComponent implements OnInit {
     this.merchSvc.getProducts().subscribe((data) => {
       console.log(data);
       this.products = data;
+      this.savedProducts = data;
       this.spinner.hide();
       this.getCart();
+    });
+  }
+
+  search(searchResult: string) {
+    console.log(searchResult);
+    this.products = this.savedProducts.filter((product) =>
+      product.name.toLowerCase().includes(searchResult.toLowerCase())
+    );
+  }
+
+  getNumberOfItemsInCart() {
+    this.numberOfCartItems = 0;
+    this.cartSvc.getCartWithItems(localStorage.getItem('uuid')).subscribe(data => {
+      this.cartItems = data;
+      console.log(this.cartItems)
+      this.cartItems.forEach(item => {
+        this.numberOfCartItems = this.numberOfCartItems + item.number_of_items;
+        console.log('cart count: ' + this.numberOfCartItems)
+      });
     });
   }
 

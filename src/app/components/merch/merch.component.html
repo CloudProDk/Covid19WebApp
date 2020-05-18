@@ -2,11 +2,12 @@
 <div class="container">
   <div class="intro">
     <h1 class="inlineblock">Merchandise</h1>
-    <button class="btn-secondary" style="float:right;" routerLink="/cart" mat-button>Go to cart</button>
+    <button class="btn-secondary" style="float:right;" routerLink="/cart" [matBadge]="numberOfCartItems" matBadgePosition="after" matBadgeColor="accent" mat-button>Go to cart</button>
+ 
   </div>
 
   <div class="searchcontainer">
-    <input class="input-primary" type="search" placeholder="Search..." value="" />
+    <input class="input-primary" type="search" placeholder="Search..." value="" #txtVal (keyup)="search(txtVal.value)"/>
     <div class="merchcontainer">
       <div class="card box shadow" *ngFor="let product of products">
         <div class="product-img">
@@ -15,8 +16,11 @@
         <div class="product-details">
           <h3>{{ product.name }}</h3>
           <span class="price">{{ product.price }}€</span>
-          <button class="btn-primary" mat-button (click)="addCartItem(product.id, product.name)">
+          <button *ngIf="product.quantity > 0" class="btn-primary" mat-button (click)="addCartItem(product.id, product.name)">
             Add to cart
+          </button>
+          <button *ngIf="product.quantity <= 0" class="btn-primary" disabled mat-button (click)="addCartItem(product.id, product.name)">
+            Out of stock
           </button>
           <span class="remaining">{{ product.quantity }} in stock</span>
         </div>
