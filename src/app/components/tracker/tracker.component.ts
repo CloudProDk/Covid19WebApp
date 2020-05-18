@@ -38,8 +38,7 @@ export class TrackerComponent implements OnInit {
   totalRecovered: number = 0;
   totalPopulation: number = 0;
   totalCritical: number = 0;
-
-  
+  totalCasesPerMillionPopulation: number = 0;
 
   constructor(
     private trackerSvc: TrackerService,
@@ -75,7 +74,9 @@ export class TrackerComponent implements OnInit {
 
   sort(searchResult: string) {
     console.log(searchResult);
-    this.countries = this.savedCountries.filter(country => country.name.toLowerCase().includes(searchResult.toLowerCase()));
+    this.countries = this.savedCountries.filter((country) =>
+      country.name.toLowerCase().includes(searchResult.toLowerCase())
+    );
   }
 
   getCountry(countryCode: string) {
@@ -116,6 +117,7 @@ export class TrackerComponent implements OnInit {
     this.country.latest_data.critical = this.totalCritical;
     this.country.today.deaths = this.totalNewDeaths;
     this.country.today.confirmed = this.totalNewCases;
+    this.country.latest_data.calculated.cases_per_million_population = this.totalCasesPerMillionPopulation;
 
     scroll(0, 0);
     this.selectedDateIndex = 0;
@@ -178,6 +180,8 @@ export class TrackerComponent implements OnInit {
         this.totalRecovered += data.data[i].latest_data.recovered;
         this.totalPopulation += data.data[i].population;
         this.totalCritical += data.data[i].latest_data.critical;
+        this.totalCasesPerMillionPopulation +=
+          data.data[i].latest_data.calculated.cases_per_million_population;
       }
     });
   }

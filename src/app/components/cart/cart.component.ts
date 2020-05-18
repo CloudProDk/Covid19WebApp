@@ -1,18 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { CartService } from '../../services/cart/cart.service';
-import { Cart } from '../../models/cart';
-import { CartItem } from '../../models/cartItem';
-import { NgxSpinnerService } from 'ngx-spinner';
+import { Component, OnInit } from "@angular/core";
+import { CartService } from "../../services/cart/cart.service";
+import { Cart } from "../../models/cart";
+import { CartItem } from "../../models/cartItem";
+import { NgxSpinnerService } from "ngx-spinner";
 @Component({
-  selector: 'app-cart',
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.scss'],
+  selector: "app-cart",
+  templateUrl: "./cart.component.html",
+  styleUrls: ["./cart.component.scss"],
 })
 export class CartComponent implements OnInit {
   cart: any = [];
   totalPrice = 0;
 
-  constructor(private cartSvc: CartService, private spinner: NgxSpinnerService) {}
+  constructor(
+    private cartSvc: CartService,
+    private spinner: NgxSpinnerService
+  ) {}
 
   ngOnInit(): void {
     this.getCart();
@@ -21,7 +24,7 @@ export class CartComponent implements OnInit {
   getCart() {
     this.spinner.show();
     this.cartSvc
-      .getCartWithItems(localStorage.getItem('uuid'))
+      .getCartWithItems(localStorage.getItem("uuid"))
       .subscribe((data) => {
         console.log(data);
         this.cart = data;
@@ -33,14 +36,11 @@ export class CartComponent implements OnInit {
       });
   }
 
-  removeCartItem(cartItemID: number) {
+  removeCartItem(cartItemID: number, cartItemProduct: number) {
     this.spinner.show();
-    this.cartSvc.removeCartItem(cartItemID).then(() => {
+    this.cartSvc.removeCartItem(cartItemID, cartItemProduct).then(() => {
       this.ngOnInit();
     });
-    // this.getCart();
-    console.log(cartItemID);
+    console.log(cartItemID, cartItemProduct);
   }
-
-
 }

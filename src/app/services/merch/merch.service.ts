@@ -5,7 +5,7 @@ import { environment } from "src/environments/environment";
 import { Product } from "../../models/product";
 import { Cart } from "../../models/cart";
 import { CartItem } from "../../models/cartItem";
-import { ToastrService } from 'ngx-toastr';
+import { ToastrService } from "ngx-toastr";
 
 @Injectable({
   providedIn: "root",
@@ -29,13 +29,14 @@ export class MerchService {
       }
     );
   }
-  addCartItem(cartItem: CartItem, item: string) {
-    this.http
+  async addCartItem(cartItem: CartItem, item: string) {
+    await this.http
       .post<CartItem>(environment.API_URL + "shop/addCartItem", cartItem)
-      .subscribe(
+      .toPromise()
+      .then(
         (data) => {
-          console.log(item)
-          this.toastr.success(item + ' added to cart');
+          console.log(item);
+          this.toastr.success(item + " added to cart");
           console.log(data);
         },
         (error) => {
