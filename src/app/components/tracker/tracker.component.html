@@ -82,10 +82,32 @@
           }}</span>
           <span class="title">Total deaths</span>
         </div>
-        <div class="metric">
-          <span class="val">-</span>
-          <span class="title">Tested</span>
+        <div
+          class="metric"
+          *ngIf="selectedDateIndex == 0; else noCasesPerMillionPopulation"
+        >
+          <span class="val">{{
+            country.latest_data &&
+            country.latest_data.calculated.cases_per_million_population
+              ? formatNumber(
+                  country.latest_data.calculated.cases_per_million_population
+                )
+              : "-"
+          }}</span>
+          <span class="title"
+            >Cases per <br />
+            million population</span
+          >
         </div>
+        <ng-template #noCasesPerMillionPopulation>
+          <div class="metric">
+            <span class="val">-</span>
+            <span class="title"
+              >Cases per <br />
+              million population</span
+            >
+          </div>
+        </ng-template>
       </div>
     </div>
 
@@ -229,8 +251,18 @@
             <span class="title">Total deaths</span>
           </div>
           <div class="metric">
-            <span class="val">-</span>
-            <span class="title">Tested</span>
+            <span class="val">{{
+              country.latest_data &&
+              country.latest_data.calculated.cases_per_million_population
+                ? formatNumber(
+                    country.latest_data.calculated.cases_per_million_population
+                  )
+                : "-"
+            }}</span>
+            <span class="title"
+              >Cases per <br />
+              million population</span
+            >
           </div>
         </div>
       </div>
@@ -316,7 +348,14 @@
     </div>
   </ng-template>
 
-  <input class="input-primary" id="search-country" type="search" placeholder="Search for a country" #txtVal (keyup)="sort(txtVal.value)">
+  <input
+    class="input-primary"
+    id="search-country"
+    type="search"
+    placeholder="Search for a country"
+    #txtVal
+    (keyup)="sort(txtVal.value)"
+  />
   <div class="table shadow">
     <div class="header">
       <div class="row">
