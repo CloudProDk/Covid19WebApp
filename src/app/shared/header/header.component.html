@@ -1,5 +1,6 @@
 <mat-toolbar class="navbar">
   <mat-toolbar-row class="header">
+    <div class="logo" matRipple routerLink="tracker"></div>
     <!-- Header menu items -->
     <ng-container *ngFor="let m of MENUITEMS">
       <span class="nav-item" matRipple routerLink="{{m.link}}" routerLinkActive="active-link">{{m.title}}</span>
