@@ -1,3 +1,25 @@
+.logo {
+  background-image: url('../../../assets/logos/logo.png');
+  background-repeat: no-repeat;
+  background-size: 36px;
+  background-position: 8.5px center;
+  height: 40px;
+  width: 40px;
+  margin-right: 14px;
+  padding: 8px;
+  border-radius: 50%;
+  box-sizing: content-box;
+  cursor: pointer;
+
+  ::ng-deep .mat-ripple-element {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+  }
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
 .mat-toolbar {
   background-color: transparent;
 }
@@ -47,10 +69,6 @@
     margin-left: 12px;
     vertical-align: text-bottom;
   }
-}
-
-.active-link {
-  
 }
 
 .header-image {
