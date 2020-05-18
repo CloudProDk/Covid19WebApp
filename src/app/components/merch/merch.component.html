@@ -13,9 +13,7 @@
           <img src="{{ product.img_url }}" alt="{{ product.name }}" />
         </div>
         <div class="product-details">
-          <h3>
-            {{ product.name }}
-          </h3>
+          <h3>{{ product.name }}</h3>
           <span class="price">{{ product.price }}€</span>
           <button class="btn-primary" mat-button (click)="addCartItem(product.id, product.name)">
             Add to cart
@@ -23,33 +21,6 @@
           <span class="remaining">{{ product.quantity }} in stock</span>
         </div>
       </div>
-      <!-- 
-        <mat-card class="Box2">
-            
-            <button mat-button>Add to cart</button>
-            <br>
-            <h4>Black</h4>
-            <br>
-            <h4>150 DKK</h4>
-        </mat-card>
-
-        <mat-card class="Box3">
-            
-            <button mat-button>Add to cart</button>
-            <br>
-            <h4>Black</h4>
-            <br>
-            <h4>150 DKK</h4>
-        </mat-card>
-
-        <mat-card class="Box3">
-            
-            <button mat-button>Add to cart</button>
-            <br>
-            <h4>Black</h4>
-            <br>
-            <h4>150 DKK</h4>
-        </mat-card> -->
     </div>
   </div>
 </div>

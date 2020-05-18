@@ -1,16 +1,12 @@
-.container {
-  color: white;
-  margin: 1rem;
+.background {
+  height: 771px !important;
+  background-image: url('../../../assets/icons/world_low.svg'); // amCharts - https://www.amcharts.com/svg-maps/?map=world
+  background-position: center 50px;
+  background-size: 1200px;
+  background-repeat: no-repeat;
 }
-.highlights {
-  table {
-    margin-right: 8rem;
-  }
-}
-.bigTable {
-  margin-top: 3rem;
-}
-.highlightProperties {
-  display: block;
-  font-size: 0.5rem;
+
+#search-country {
+  margin: 90px 0 12px 17px;
+  width: 300px;
 }

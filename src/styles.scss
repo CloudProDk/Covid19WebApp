@@ -32,7 +32,7 @@ body {
 
 .background {
   position: absolute;
-  height: 734px;
+  height: 100px;
   width: 100%;
   top: 0;
   left: 0;
@@ -195,6 +195,10 @@ h3 {
   color: var(--color-light-text);
   padding: 12px;
   outline: none;
+
+  &::placeholder {
+    color: var(--color-light-text-alt);
+  }
 }
 
 .input-secondary {

@@ -316,12 +316,8 @@
     </div>
   </ng-template>
 
-  <mat-form-field>
-    <input matInput placeholder="Search for a country"  #txtVal (keyup)="sort(txtVal.value)">
-    <mat-icon matSuffix>search</mat-icon>
-  </mat-form-field>
-
-  <div class="table shadow" style="margin-top: 90px;">
+  <input class="input-primary" id="search-country" type="search" placeholder="Search for a country" #txtVal (keyup)="sort(txtVal.value)">
+  <div class="table shadow">
     <div class="header">
       <div class="row">
         <div class="column">Country</div>
