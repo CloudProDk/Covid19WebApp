@@ -58,6 +58,12 @@
   }
 }
 
+.input-secondary {
+  display: block;
+  margin: 0 auto;
+  margin-top: 12px;
+}
+
 ::ng-deep .mat-horizontal-content-container {
   padding: 0 !important;
 }
@@ -68,6 +74,7 @@
 
 .highscore-table{
   width: 100%;
+  overflow: initial;
 }
 
 .table-container{

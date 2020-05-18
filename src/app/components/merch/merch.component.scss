@@ -5,6 +5,17 @@
 .intro .btn-secondary {
   float: right;
   margin-top: 37px;
+
+  ::ng-deep .mat-badge-content {
+    background: #ffffff;
+    color: var(--color-primary);
+    padding: 0 7px;
+    border: 2px solid var(--color-primary);
+    box-sizing: content-box;
+    border-radius: 14px;
+    width: auto;
+    top: -17px;
+  }
 }
 
 .searchcontainer {
