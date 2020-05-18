@@ -28,4 +28,11 @@ export class HighscoreService {
         }
       );
   }
+
+  playHighScore(){
+      let audio = new Audio();
+      audio.src = './assets/icons/theme.mp3';
+      audio.load();
+      audio.play();
+  }
 }

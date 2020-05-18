@@ -67,14 +67,18 @@ export class QuizComponent implements OnInit {
     }
   }
 
+  playHighscore(){
+    this.highScoreSvc.playHighScore();
+  }
+
   async getHighScore() {
 
-    this.spinner.show();  
+    this.spinner.show();
     const highscore: HighScore = {
       score: this.totalCorrect,
       created: new Date(),
       name: this.playerName
-    }
+    };
 
     await this.highScoreSvc.addHighScore(highscore);
 
