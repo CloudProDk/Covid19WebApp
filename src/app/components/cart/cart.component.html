@@ -11,9 +11,17 @@
         <img src="{{ cartItem.img_url }}" alt="{{ cartItem.name }}" />
         <div class="product-details">
           <h3>{{ cartItem.name }}</h3>
-          <span class="quantity">{{ cartItem.number_of_items }} × {{ cartItem.price }}€</span>
+          <span class="quantity"
+            >{{ cartItem.number_of_items }} × {{ cartItem.price }}€</span
+          >
           <span class="price">{{ cartItem.total_price }}€ total</span>
-          <button class="btn-secondary" (click)="removeCartItem(cartItem.cart_item_id)" mat-button>Remove 1 from cart</button>
+          <button
+            class="btn-secondary"
+            (click)="removeCartItem(cartItem.cart_item_id, cartItem.product)"
+            mat-button
+          >
+            Remove 1 from cart
+          </button>
         </div>
       </div>
     </div>

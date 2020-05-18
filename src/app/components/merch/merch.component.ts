@@ -51,7 +51,7 @@ export class MerchComponent implements OnInit {
     console.log(localStorage.getItem("uuid"));
     this.merchSvc.getCart(localStorage.getItem("uuid")).subscribe((data) => {
       console.log(data);
-      console.log(this.cart.length)
+      console.log(this.cart.length);
       this.cart = data;
     });
   }
@@ -62,6 +62,8 @@ export class MerchComponent implements OnInit {
       product: productID,
     };
     console.log(this.cart[0].id);
-    this.merchSvc.addCartItem(cartItem, item);
+    this.merchSvc.addCartItem(cartItem, item).then(() => {
+      this.ngOnInit();
+    });
   }
 }
