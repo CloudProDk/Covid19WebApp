@@ -43,4 +43,8 @@ export class CartComponent implements OnInit {
     });
     console.log(cartItemID, cartItemProduct);
   }
+
+  twoDecimals(value: number){
+    return value.toFixed(2);
+  }
 }

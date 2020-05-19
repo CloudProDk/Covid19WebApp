@@ -316,7 +316,7 @@ h3 {
 
     tr, .row {
       height: 46px;
-      cursor: default;
+      cursor: pointer;
       
       &:nth-child(odd) {
         background-color: var(--color-off-white);

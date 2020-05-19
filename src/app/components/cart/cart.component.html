@@ -5,16 +5,16 @@
   </div>
 
   <div>
-    <h2>Total price: {{ totalPrice }}€</h2>
+    <h2>Total price: {{ twoDecimals(totalPrice) }}€</h2>
     <div class="product-list">
       <div class="card box shadow" *ngFor="let cartItem of cart">
         <img src="{{ cartItem.img_url }}" alt="{{ cartItem.name }}" />
         <div class="product-details">
           <h3>{{ cartItem.name }}</h3>
           <span class="quantity"
-            >{{ cartItem.number_of_items }} × {{ cartItem.price }}€</span
+            >{{ cartItem.number_of_items }} × {{ twoDecimals(cartItem.price) }}€</span
           >
-          <span class="price">{{ cartItem.total_price }}€ total</span>
+          <span class="price">{{ twoDecimals(cartItem.total_price) }}€ total</span>
           <button
             class="btn-secondary"
             (click)="removeCartItem(cartItem.cart_item_id, cartItem.product)"
