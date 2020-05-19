@@ -15,7 +15,7 @@ export class QuizComponent implements OnInit {
   totalCorrect = 0;
 
   questionOne: Question[] = [
-    {question: 'In your armpit', value: true},
+    {question: 'In your elbow flexion', value: true},
     {question: 'In your hands', value: false},
     {question: 'Down towards your belly', value: false},
     {question: 'In a direction without people', value: false},
@@ -31,15 +31,41 @@ export class QuizComponent implements OnInit {
 
   questionThree: Question[] = [
     {question: '10 - 20 seconds', value: false},
-    {question: '20 - 30 seconds', value: false},
+    {question: '20 - 30 seconds', value: true},
     {question: '30 - 40 seconds', value: false},
-    {question: '45 - 60 seconds', value: true},
+    {question: '40 - 50 seconds', value: false},
+  ];
+
+  questionFour: Question[] = [
+    {question: 'Diabetics', value: false},
+    {question: 'Obese people', value: false},
+    {question: 'Homeless people', value: false},
+    {question: 'The elderly', value: false},
+    {question: 'Children', value: true},
+  ];
+  questionFive: Question[] = [
+    {question: '10-30 minutes', value: false},
+    {question: '1-2 minutes', value: false},
+    {question: '24-30 hours', value: false},
+    {question: '30-70 hours', value: false},
+    {question: '72 hours or more', value: true},
+    {question: '20-30 seconds', value: false},
+  ];
+  questionSix: Question[] = [
+    {question: 'Fever', value: false},
+    {question: 'Coughing', value: false},
+    {question: 'Tiredness', value: false},
+    {question: 'Breathing problems', value: false},
+    {question: 'All of the answers', value: true},
   ];
 
 
   answersOne: Question[] = [];
   answersTwo: Question[] = [];
   answersThree: Question[] = [];
+  answersFour: Question[] = [];
+  answersFive: Question[] = [];
+  answersSix: Question[] = [];
 
   playerName: string;
   highscores: any = [];

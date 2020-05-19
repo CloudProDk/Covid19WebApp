@@ -28,7 +28,7 @@
 
       <!-- Second Step Start -->
       <mat-step>
-        <ng-template matStepLabel>What does Incubation periode mean?</ng-template>
+        <ng-template matStepLabel>What does incubation period mean?</ng-template>
         <h2 class="question">What does Incubation periode mean?</h2>
 
         <app-drag-list [questionList]="questionTwo" [answerList]="answersTwo"></app-drag-list>
@@ -49,14 +49,59 @@
 
         <div>
           <button class="btn-primary" *ngIf="answersThree.length > 0" mat-button matStepperNext
-            (click)="checkAnswer(answersThree[0])">Finish</button>
+            (click)="checkAnswer(answersThree[0])">Next Question</button>
         </div>
       </mat-step>
       <!-- Third Step Stop -->
+
+      <!-- Fourth Step Start -->
+      <mat-step>
+        <ng-template matStepLabel>Which of these are not a high risk group?</ng-template>
+        <h2 class="question">Which of these are not a high risk group?</h2>
+
+        <app-drag-list [questionList]="questionFour" [answerList]="answersFour"></app-drag-list>
+
+        <div>
+          <button class="btn-primary" *ngIf="answersFour.length > 0" mat-button matStepperNext
+            (click)="checkAnswer(answersFour[0])">Next Question</button>
+        </div>
+      </mat-step>
+      <!-- Fourth Step Stop -->
+
+      <!-- Fifth Step Start -->
+      <mat-step>
+        <ng-template matStepLabel>How long can the virus survive on plastic and stainless steel?</ng-template>
+        <h2 class="question">How long can the virus survive on plastic and stainless steel?</h2>
+
+        <app-drag-list [questionList]="questionFive" [answerList]="answersFive"></app-drag-list>
+
+        <div>
+          <button class="btn-primary" *ngIf="answersFive.length > 0" mat-button matStepperNext
+            (click)="checkAnswer(answersFive[0])">Next Question</button>
+        </div>
+      </mat-step>
+      <!-- Fifth Step Stop -->
+
+
+      <!-- Sixth Step Start -->
+      <mat-step>
+        <ng-template matStepLabel>What are the common symptoms of Covid-19?</ng-template>
+        <h2 class="question">What are the common symptoms of Covid-19?</h2>
+
+        <app-drag-list [questionList]="questionSix" [answerList]="answersSix"></app-drag-list>
+
+        <div>
+          <button class="btn-primary" *ngIf="answersSix.length > 0" mat-button matStepperNext
+            (click)="checkAnswer(answersSix[0])">Finish</button>
+        </div>
+      </mat-step>
+      <!-- Sixth Step Stop -->
+
+
       <mat-step>
         <ng-template matStepLabel>Done</ng-template>
         <h2 class="center">Congratulations</h2>
-        <h3 class="center">You scored {{totalCorrect}} / 3</h3>
+        <h3 class="center">You scored {{totalCorrect}} / 6</h3>
         <input class="input-secondary" placeholder="Your name (optional)" [(ngModel)]="playerName">
         <button class="btn-primary" mat-button matStepperNext (click)="getHighScore()">Submit Score</button>
       </mat-step>
@@ -72,7 +117,7 @@
             <!-- Score Column -->
             <ng-container matColumnDef="score">
               <th mat-header-cell *matHeaderCellDef> Score </th>
-              <td mat-cell *matCellDef="let score"> {{score.score}} </td>
+              <td mat-cell *matCellDef="let score"> {{score.score}} / 6 </td>
             </ng-container>
 
             <!-- Name Column -->
