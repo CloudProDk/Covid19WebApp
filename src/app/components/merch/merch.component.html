@@ -2,10 +2,7 @@
 <div class="container">
   <div class="intro">
     <h1 class="inlineblock">Merchandise</h1>
-    <button class="btn-secondary" style="float:right;" routerLink="/cart" [matBadge]="numberOfCartItems" matBadgePosition="after" matBadgeColor="accent" mat-icon-button>
-      <mat-icon>shopping_cart</mat-icon>
-    </button>
- 
+    <button class="btn-secondary" routerLink="/cart" [matBadge]="numberOfCartItems" matBadgePosition="after" matBadgeColor="accent" mat-button>Go to cart</button> 
   </div>
 
   <div class="searchcontainer">
