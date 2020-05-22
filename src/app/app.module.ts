@@ -54,6 +54,7 @@ import { MerchComponent } from "./components/merch/merch.component";
 
 import { QuizComponent } from "./components/quiz/quiz.component";
 import { CartComponent } from "./components/cart/cart.component";
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { CartComponent } from "./components/cart/cart.component";
     MerchComponent,
     QuizComponent,
     CartComponent,
+    NotFoundComponent,
   ],
   imports: [
     AppRoutingModule,
